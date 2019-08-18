@@ -1,0 +1,37 @@
+.instruction {
+    padding-top: 50px;
+    padding-left: 20px;
+}
+
+.disabled {
+    opacity:0.25;
+}
+
+.isEnabled {
+    opacity:0.25;
+}
+
+button[playerColorAttr='Green']{
+    background-color: #008000;
+    color: #FFFFFF;
+}
+
+button[playerColorAttr='Red']{
+    background-color:#FF0000;
+    color: #FFFFFF;
+}
+
+button[playerColorAttr='Yellow']{
+    background-color:#FFFF00;
+    color: #000000;
+}
+
+button[playerColorAttr='Blue']{
+    background-color:#008080;
+    color: #FFFFFF;
+}
+
+button[playerColorAttr='Black']{
+    background-color:#000000;
+    color: #FFFFFF;
+}
