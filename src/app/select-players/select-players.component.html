@@ -1,30 +1,40 @@
-<ActionBar title="Ticket to Ride Scorekeeper" class="action-bar"></ActionBar>
+<Page>
+    <Page.actionBar>
+        <ActionBar title="Ticket to Ride Scorekeeper">
+            <StackLayout orientation="horizontal">
+                <Label text="Ticket to Ride Scorekeeper" 
+                    class="action-label" 
+                    verticalAlignment="middle">
+                </Label>
+                <Button text="continue" 
+                    class="btn btn-outline"
+                    [isEnabled]="selectedPlayerColors.length > 1"
+                    [nsRouterLink]="['/scoring-routes']">
+                </Button>
+            </StackLayout>
+        </ActionBar>
+    </Page.actionBar>
 
-<StackLayout>
+    <StackLayout>
     
-    <StackLayout orientation="horizontal">
-        <Label text="Select colors for the players."
-            class="text-left"
-            marginLeft="40px"
-            verticalAlignment="middle">
-        </Label>
-        <Button text="Clear Selections" 
-            class="btn btn-outline" 
-            (tap)='selectedPlayerColors = []'
-            [isEnabled]="selectedPlayerColors.length > 1" 
-            style="padding-left: 15px; padding-right: 15px;">
-        </Button>        
+        <StackLayout orientation="horizontal">
+            <Label text="Select colors for the players."
+                class="text-left instructions"
+                marginLeft="40px"
+                marginTop="50px"
+                verticalAlignment="middle">
+            </Label>    
+        </StackLayout>
+        
+        <StackLayout *ngFor="let playerColor of playerColors; let i = index">
+            <Button [text]="playerColor.name" 
+                class="btn" 
+                [ngClass]="{ notSelected: isEnabled(playerColor.name) }"
+                [color]="playerColor.color"
+                [backgroundColor]="playerColor.backgroundColor"
+                (tap)='selectPlayerColor(playerColor)'>
+            </Button>
+        </StackLayout>
+        
     </StackLayout>
-    
-    <StackLayout *ngFor="let playerColor of playerColors; let i = index">
-        <Button [text]="playerColor.name" 
-            class="btn" 
-            [ngClass]="{ disabled: !isEnabled(playerColor.name) }"
-            [color]="playerColor.color"
-            [backgroundColor]="playerColor.backgroundColor"
-            (tap)='selectPlayerColor(playerColor)'
-            [isEnabled]="isEnabled(playerColor)">
-        </Button>
-    </StackLayout>
-    
-</StackLayout>
+</Page>

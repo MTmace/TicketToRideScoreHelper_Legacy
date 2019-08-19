@@ -4,6 +4,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { SelectPlayersComponent } from "./select-players/select-players.component";
+import { ScoringRoutesComponent } from "./scoring-routes/scoring-routes.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -21,7 +22,8 @@ import { SelectPlayersComponent } from "./select-players/select-players.componen
     ],
     declarations: [
         AppComponent,
-        SelectPlayersComponent
+        SelectPlayersComponent,
+        ScoringRoutesComponent
     ],
     providers: [],
     schemas: [

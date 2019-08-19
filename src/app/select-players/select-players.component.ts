@@ -14,10 +14,6 @@ export class SelectPlayersComponent implements OnInit {
     playerColors: Array<PlayerColor>;
     selectedPlayerColors: Array<PlayerColor> = [];
 
-    // This pattern makes use of Angular’s dependency injection implementation to
-    // inject an instance of the ItemService service into this class.
-    // Angular knows about this service because it is included in your app’s main NgModule,
-    // defined in app.module.ts.
     constructor(private playerColorService: PlayerColorService) { }
 
     ngOnInit(): void {
@@ -25,7 +21,8 @@ export class SelectPlayersComponent implements OnInit {
     }
 
     selectPlayerColor(selectedPlayerColor: PlayerColor) {
-        this.selectedPlayerColors.push(selectedPlayerColor);
+        const foundIndex = this.selectedPlayerColors.findIndex(x => x.name === selectedPlayerColor.name);
+        foundIndex === -1 ? this.selectedPlayerColors.push(selectedPlayerColor) : this.selectedPlayerColors.splice(foundIndex, 1);
     }
 
     isEnabled(selectedPlayerColor: string) : boolean {
