@@ -8,7 +8,7 @@
                 </Label>
                 <Button text="continue" 
                     class="btn btn-outline"
-                    [isEnabled]="selectedPlayerColors.length > 1"
+                    [isEnabled]="scoringDataService.selectedPlayerColors.length > 1"
                     [nsRouterLink]="['/scoring-routes']">
                 </Button>
             </StackLayout>
