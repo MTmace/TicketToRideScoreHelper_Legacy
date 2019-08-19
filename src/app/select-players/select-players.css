@@ -1,8 +1,4 @@
-.disabled {
-    opacity:0.25;
-}
-
-.isEnabled {
+.notSelected {
     opacity:0.25;
 }
 

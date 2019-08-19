@@ -13,11 +13,10 @@
     <StackLayout *ngFor="let playerColor of playerColors; let i = index">
         <Button [text]="playerColor.name" 
             class="btn" 
-            [ngClass]="{ disabled: !isEnabled(playerColor.name) }"
+            [ngClass]="{ notSelected: isEnabled(playerColor.name) }"
             [color]="playerColor.color"
             [backgroundColor]="playerColor.backgroundColor"
-            (tap)='selectPlayerColor(playerColor)'
-            [isEnabled]="isEnabled(playerColor)">
+            (tap)='selectPlayerColor(playerColor)'>
         </Button>
     </StackLayout>
     
