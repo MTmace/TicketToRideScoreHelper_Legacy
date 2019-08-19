@@ -25,7 +25,8 @@ export class SelectPlayersComponent implements OnInit {
     }
 
     selectPlayerColor(selectedPlayerColor: PlayerColor) {
-        this.selectedPlayerColors.push(selectedPlayerColor);
+        const foundIndex = this.selectedPlayerColors.findIndex(x => x.name === selectedPlayerColor.name);
+        foundIndex === -1 ? this.selectedPlayerColors.push(selectedPlayerColor) : this.selectedPlayerColors.splice(foundIndex, 1);
     }
 
     isEnabled(selectedPlayerColor: string) : boolean {

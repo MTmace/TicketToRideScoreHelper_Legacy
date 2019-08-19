@@ -7,13 +7,7 @@
             class="text-left"
             marginLeft="40px"
             verticalAlignment="middle">
-        </Label>
-        <Button text="Clear Selections" 
-            class="btn btn-outline" 
-            (tap)='selectedPlayerColors = []'
-            [isEnabled]="selectedPlayerColors.length > 1" 
-            style="padding-left: 15px; padding-right: 15px;">
-        </Button>        
+        </Label>    
     </StackLayout>
     
     <StackLayout *ngFor="let playerColor of playerColors; let i = index">
