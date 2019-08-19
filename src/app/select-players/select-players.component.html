@@ -2,13 +2,13 @@
     <Page.actionBar>
         <ActionBar title="Ticket to Ride Scorekeeper">
             <StackLayout orientation="horizontal">
-                <Label text="Ticket to Ride Scorekeeper" 
+                <Label text="Ticket to Ride Scorekeeper1" 
                     class="action-label" 
                     verticalAlignment="middle">
                 </Label>
                 <Button text="continue" 
                     class="btn btn-outline"
-                    [isEnabled]="scoringDataService.selectedPlayerColors.length > 1"
+                    [isEnabled]="scoringCacheService.playerScoreCards.length > 1"
                     [nsRouterLink]="['/scoring-routes']">
                 </Button>
             </StackLayout>
