@@ -6,12 +6,15 @@
                     class="action-label"
                     verticalAlignment="middle">
                 </Label>
+                <Button text="continue" 
+                    class="btn btn-outline">
+                </Button>
             </StackLayout>
         </ActionBar>
     </Page.actionBar>
 
     <StackLayout>
-        <Label text="Enter route lengths."
+        <Label text="Long press (hold down the button) to subtract a route."
             class="text-left instructions"
             marginLeft="40px"
             marginTop="50px"
@@ -19,32 +22,35 @@
             verticalAlignment="middle">
         </Label>
 
-        <GridLayout *ngFor="let routePoints of routeLengthPointsService.getRouteLengthPointsList()" rows="auto" columns="*" marginLeft="20px"> 
+        <GridLayout *ngFor="let routeLengthPoints of routeLengthPointsService.getRouteLengthPointsList()" rows="auto" columns="*" marginLeft="20px"> 
             <StackLayout orientation="horizontal" verticalAlignment="middle">
                 <Label column="0"
-                    [text]="routePoints.length" 
+                    [text]="routeLengthPoints.length" 
                     paddingRight="10px"
                     paddingTop="20px"
                     verticalAlignment="middle"
                     fontSize="18">
                 </Label>
 
-                <GridLayout *ngFor="let scoreCard of scoringCacheService.playerScoreCards" rows="70" columns="70"> 
+                <GridLayout *ngFor="let playerScoreCard of scoringCacheService.playerScoreCards" rows="70" columns="70"> 
                     <StackLayout>
                         <Button class="btn" 
                             row="0" 
-                            text="6"
+                            [text]="getRouteLengthPoints(routeLengthPoints, playerScoreCard)"
                             width="60"
                             height="60"
                             textAlignment="center"
-                            [backgroundColor]="scoreCard.playerColor.backgroundColor" 
-                            [color]="scoreCard.playerColor.color">
+                            [backgroundColor]="playerScoreCard.playerColor.backgroundColor" 
+                            [color]="playerScoreCard.playerColor.color"
+                            (touch)="onTouch($event, routeLengthPoints, playerScoreCard)">
                         </Button>
                     </StackLayout>
                 </GridLayout> 
                     
             </StackLayout>
         </GridLayout> 
+        
+        <StackLayout class="hr-light"></StackLayout>
 
     </StackLayout>
     
