@@ -1,4 +1,4 @@
 export interface RouteLengthPoints {
-    trainLength: number;
+    length: number;
     points: number;
 }

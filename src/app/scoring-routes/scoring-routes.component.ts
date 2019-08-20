@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { ScoringCacheService } from "../services/scoring-cache.service";
+import { RouteLengthPointsService } from "../services/route-length-points.services";
 
 @Component({
     selector: "mt-scoring-routes",
@@ -9,7 +11,8 @@ import { Component, OnInit } from "@angular/core";
 
 export class ScoringRoutesComponent implements OnInit {
 
-    constructor() {
+    constructor(private scoringCacheService: ScoringCacheService,
+        private routeLengthPointsService: RouteLengthPointsService) {
     }
 
     ngOnInit(): void {

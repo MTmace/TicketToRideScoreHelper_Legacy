@@ -7,12 +7,12 @@ import { RouteLengthPoints } from "../models/route-length-points";
 
 export class RouteLengthPointsService {
     private routesPoints = new Array<RouteLengthPoints>(
-        { trainLength: 1, points: 1 },
-        { trainLength: 2, points: 2 },
-        { trainLength: 3, points: 4 },
-        { trainLength: 4, points: 7 },
-        { trainLength: 5, points: 10 },
-        { trainLength: 6, points: 15 }
+        { length: 1, points: 1 },
+        { length: 2, points: 2 },
+        { length: 3, points: 4 },
+        { length: 4, points: 7 },
+        { length: 5, points: 10 },
+        { length: 6, points: 15 }
     );
 
     getRouteLengthPointsList(): Array<RouteLengthPoints> {
@@ -20,6 +20,6 @@ export class RouteLengthPointsService {
     }
 
     getRouteLengthPoints(trainLength: number): RouteLengthPoints {
-        return this.routesPoints.filter((routePoints) => routePoints.trainLength === trainLength)[0];
+        return this.routesPoints.filter((routePoints) => routePoints.length === trainLength)[0];
     }
 }
