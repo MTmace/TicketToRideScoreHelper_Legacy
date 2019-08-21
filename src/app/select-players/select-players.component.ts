@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { PlayerColorService } from "../services/player-color.service";
+import { DataService } from "../services/data.service";
 import { PlayerColor } from "../models/player-color";
 import { PlayerScoreCard } from "../models/player-score-card";
 import { ScoringCacheService } from "../services/scoring-cache.service";
@@ -16,7 +16,7 @@ import { ScoringCacheService } from "../services/scoring-cache.service";
 export class SelectPlayersComponent implements OnInit {
     playerColors: Array<PlayerColor>;
 
-    constructor(private playerColorService: PlayerColorService,
+    constructor(private playerColorService: DataService,
         private scoringCacheService: ScoringCacheService) { 
         }
 
