@@ -26,6 +26,7 @@ export class ScoringRoutesComponent implements OnInit {
     }
 
     // TODO: move to service
+    // TODO: add unit testing here
     addRouteToCard(routeLengthPoints: RouteLengthPoints, playerScoreCard: PlayerScoreCard) {
         // check to see if the route has been added to the score card
         var routeCount = playerScoreCard.routeCounts.find(x => x[1].length === routeLengthPoints.length);
@@ -34,7 +35,11 @@ export class ScoringRoutesComponent implements OnInit {
             // not route was found, so add it
             playerScoreCard.routeCounts.push([1, routeLengthPoints]);
         } else {
-            routeCount[0] = routeCount[0] + 1;
+            // TODO: the limit should be per game and not per person. Need to validate limit against all players
+            // If the routeCounts have not reached their limits then add it to the ScoreCard
+            if (routeCount[0] < routeCount[1].limit) {
+                routeCount[0] = routeCount[0] + 1;
+            }
         }
     }
 
