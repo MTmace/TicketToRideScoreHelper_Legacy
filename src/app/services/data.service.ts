@@ -17,12 +17,12 @@ export class DataService {
     );
 
     private routesPoints = new Array<RouteLengthPoints>(
-        { length: 1, points: 1 },
-        { length: 2, points: 2 },
-        { length: 3, points: 4 },
-        { length: 4, points: 7 },
-        { length: 5, points: 10 },
-        { length: 6, points: 15 }
+        { length: 1, points: 1, limit: 5 },
+        { length: 2, points: 2, limit: 24},
+        { length: 3, points: 4, limit: 15 },
+        { length: 4, points: 7, limit: 12 },
+        { length: 5, points: 10, limit: 8 },
+        { length: 6, points: 15, limit: 9 }
     );
 
     playerScoreCards: Array<PlayerScoreCard> = [];
