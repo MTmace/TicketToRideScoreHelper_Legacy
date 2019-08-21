@@ -5,7 +5,7 @@ import { RouteLengthPoints } from "../models/route-length-points";
     providedIn: "root"
 })
 
-export class RouteLengthPointService {
+export class RouteLengthPointsService {
     private routesPoints = new Array<RouteLengthPoints>(
         { trainLength: 1, points: 1 },
         { trainLength: 2, points: 2 },
@@ -15,11 +15,11 @@ export class RouteLengthPointService {
         { trainLength: 6, points: 15 }
     );
 
-    getItems(): Array<RouteLengthPoints> {
+    getRouteLengthPointsList(): Array<RouteLengthPoints> {
         return this.routesPoints;
     }
 
-    getItem(trainLength: number): RouteLengthPoints {
+    getRouteLengthPoints(trainLength: number): RouteLengthPoints {
         return this.routesPoints.filter((routePoints) => routePoints.trainLength === trainLength)[0];
     }
 }

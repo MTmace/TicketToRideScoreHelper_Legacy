@@ -8,13 +8,14 @@
                 </Label>
                 <Button text="continue" 
                     class="btn btn-outline"
-                    [isEnabled]="scoringDataService.selectedPlayerColors.length > 1"
+                    [isEnabled]="scoringCacheService.playerScoreCards.length > 1"
                     [nsRouterLink]="['/scoring-routes']">
                 </Button>
             </StackLayout>
         </ActionBar>
     </Page.actionBar>
 
+    <!-- TODO: add scrolling -->
     <StackLayout>
     
         <StackLayout orientation="horizontal">

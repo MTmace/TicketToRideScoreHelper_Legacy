@@ -1,0 +1,68 @@
+<Page>
+    <Page.actionBar>
+        <ActionBar title="Ticket to Ride Scorekeeper">
+            <StackLayout orientation="horizontal">
+                <Label text="Ticket to Ride Scorekeeper"
+                    class="action-label"
+                    verticalAlignment="middle">
+                </Label>
+                <Button text="continue" 
+                    class="btn btn-outline">
+                </Button>
+            </StackLayout>
+        </ActionBar>
+    </Page.actionBar>
+
+    <!-- TODO: add scrolling -->
+    <StackLayout>
+        <Label text="Long press (hold down the button) to subtract a route."
+            class="text-left instructions"
+            marginLeft="40px"
+            marginTop="50px"
+            marginBottom="20px"
+            verticalAlignment="middle">
+        </Label>
+
+        <GridLayout *ngFor="let routeLengthPoints of routeLengthPointsService.getRouteLengthPointsList()" rows="auto" columns="*" marginLeft="20px"> 
+            <StackLayout orientation="horizontal" verticalAlignment="middle">
+                <Label column="0"
+                    [text]="routeLengthPoints.length" 
+                    paddingRight="10px"
+                    paddingTop="20px"
+                    verticalAlignment="middle"
+                    fontSize="18">
+                </Label>
+
+                <GridLayout *ngFor="let playerScoreCard of scoringCacheService.playerScoreCards" rows="70" columns="70"> 
+                    <StackLayout>
+                        <Button class="btn" 
+                            row="0" 
+                            [text]="getRouteLengthPoints(routeLengthPoints, playerScoreCard)"
+                            width="60"
+                            height="60"
+                            textAlignment="center"
+                            [backgroundColor]="playerScoreCard.playerColor.backgroundColor" 
+                            [color]="playerScoreCard.playerColor.color"
+                            (touch)="onTouch($event, routeLengthPoints, playerScoreCard)">
+                        </Button>
+                    </StackLayout>
+                </GridLayout> 
+                    
+            </StackLayout>
+        </GridLayout> 
+
+        <StackLayout orientation="horizontal" backgroundColor="silver" paddingLeft="85px">
+            <Label *ngFor="let playerScoreCard of scoringCacheService.playerScoreCards"
+                [text]="getScore(playerScoreCard)"
+                [color]="playerScoreCard.playerColor.backgroundColor"
+                width="53"
+                height="40"
+                paddingTop="20px"
+                marginRight="52px"
+                fontSize="18"
+                textAlignment="center"
+                class="scoring-total"></Label>
+        </StackLayout> 
+    </StackLayout>
+    
+</Page>

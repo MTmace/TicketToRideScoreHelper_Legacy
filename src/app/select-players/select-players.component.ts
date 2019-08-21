@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-
-import { PlayerColorService } from "../services/player-color.service";
+import { DataService } from "../services/data.service";
 import { PlayerColor } from "../models/player-color";
+import { PlayerScoreCard } from "../models/player-score-card";
 import { ScoringCacheService } from "../services/scoring-cache.service";
+
+// TODO: Sort ScoreCards by PlayerColor name
 
 @Component({
     selector: "mt-select-players",
@@ -13,23 +15,29 @@ import { ScoringCacheService } from "../services/scoring-cache.service";
 
 export class SelectPlayersComponent implements OnInit {
     playerColors: Array<PlayerColor>;
-    //selectedPlayerColors: Array<PlayerColor>;
 
-    constructor(private playerColorService: PlayerColorService,
-        private scoringDataService: ScoringCacheService) { 
+    constructor(private playerColorService: DataService,
+        private scoringCacheService: ScoringCacheService) { 
         }
 
     ngOnInit(): void {
         this.playerColors = this.playerColorService.getPlayerColors();
-        this.scoringDataService.selectedPlayerColors = this.scoringDataService.selectedPlayerColors;
     }
 
     selectPlayerColor(selectedPlayerColor: PlayerColor) {
-        const foundIndex = this.scoringDataService.selectedPlayerColors.findIndex(x => x.name === selectedPlayerColor.name);
-        foundIndex === -1 ? this.scoringDataService.selectedPlayerColors.push(selectedPlayerColor) : this.scoringDataService.selectedPlayerColors.splice(foundIndex, 1);
+        const foundIndex = this.scoringCacheService.playerScoreCards.findIndex(x => x.playerColor.name === selectedPlayerColor.name);
+        foundIndex === -1 ? this.scoringCacheService.playerScoreCards.push(this.getNewScoreCard(selectedPlayerColor)) : this.scoringCacheService.playerScoreCards.splice(foundIndex, 1);
     }
 
     isEnabled(selectedPlayerColor: string) : boolean {
-        return !this.scoringDataService.selectedPlayerColors.some(x => x.name === selectedPlayerColor);
+        return !this.scoringCacheService.playerScoreCards.some(x => x.playerColor.name === selectedPlayerColor);
+    }
+
+    private getNewScoreCard(playerColor: PlayerColor): PlayerScoreCard {
+        return <PlayerScoreCard>({
+          playerColor: playerColor,
+          routeCounts: [],
+          bonusPoints: []
+        });
     }
 }
