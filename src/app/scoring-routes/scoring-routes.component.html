@@ -49,9 +49,19 @@
                     
             </StackLayout>
         </GridLayout> 
-        
-        <StackLayout class="hr-light"></StackLayout>
 
+        <StackLayout orientation="horizontal" backgroundColor="silver" paddingLeft="85px">
+            <Label *ngFor="let playerScoreCard of scoringCacheService.playerScoreCards"
+                [text]="getScore(playerScoreCard)"
+                [color]="playerScoreCard.playerColor.backgroundColor"
+                width="53"
+                height="40"
+                paddingTop="20px"
+                marginRight="52px"
+                fontSize="18"
+                textAlignment="center"
+                class="scoring-total"></Label>
+        </StackLayout> 
     </StackLayout>
     
 </Page>

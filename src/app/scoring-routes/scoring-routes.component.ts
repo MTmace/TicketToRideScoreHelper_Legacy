@@ -54,6 +54,17 @@ export class ScoringRoutesComponent implements OnInit {
         return routeCount ? routeCount[0] : count;
     }
 
+    getScore(playerScoreCard: PlayerScoreCard): number {
+        if (!playerScoreCard.routeCounts) { return 0; }
+
+        var total = 0;
+        playerScoreCard.routeCounts.forEach(routeCount => {
+            total = total + (routeCount[0]* routeCount[1].points);
+        });
+
+        return total;
+    }
+
     onTouch(args: TouchGestureEventData, routeLengthPoints: RouteLengthPoints, playerScoreCard: PlayerScoreCard) {
         if(args.action === "down") {
           this.start = new Date().getMilliseconds();

@@ -10,7 +10,7 @@ export class PlayerColorService {
         { name: "Green", color: "#FFFFFF", backgroundColor: "#008000", isEnabled: true },
         { name: "Red", color: "#FFFFFF", backgroundColor: "#FF0000", isEnabled: true },
         { name: "Yellow", color: "#000000", backgroundColor: "#FFFF00", isEnabled: true },
-        { name: "Blue", color: "#FFFFFF", backgroundColor: "#008080", isEnabled: true },
+        { name: "Blue", color: "#FFFFFF", backgroundColor: "#0000FF", isEnabled: true },
         { name: "Black", color: "#FFFFFF", backgroundColor: "#000000", isEnabled: true }
     );
 
