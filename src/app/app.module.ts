@@ -3,8 +3,10 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { SelectPlayersComponent } from "./select-players/select-players.component";
+import { BonusPointsComponent } from "./bonus-points/bonus-points.component";
 import { ScoringRoutesComponent } from "./scoring-routes/scoring-routes.component";
+import { SelectPlayersComponent } from "./select-players/select-players.component";
+import { InputBonusPointsComponent } from "./shared/input-bonus-points/input-bonus-points.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -22,8 +24,10 @@ import { ScoringRoutesComponent } from "./scoring-routes/scoring-routes.componen
     ],
     declarations: [
         AppComponent,
+        BonusPointsComponent,
+        ScoringRoutesComponent,
         SelectPlayersComponent,
-        ScoringRoutesComponent
+        InputBonusPointsComponent
     ],
     providers: [],
     schemas: [

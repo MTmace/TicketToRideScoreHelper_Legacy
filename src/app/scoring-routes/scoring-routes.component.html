@@ -7,7 +7,8 @@
                     verticalAlignment="middle">
                 </Label>
                 <Button text="continue" 
-                    class="btn btn-outline">
+                    class="btn btn-outline"
+                    [nsRouterLink]="['/bonus-points']">
                 </Button>
             </StackLayout>
         </ActionBar>
@@ -46,7 +47,7 @@
                             (touch)="onTouch($event, routeLengthPoints, playerScoreCard)">
                         </Button>
                     </StackLayout>
-                </GridLayout> 
+                </GridLayout>
                     
             </StackLayout>
         </GridLayout> 
