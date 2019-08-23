@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
+import { BonusPoints } from "~/app/models/bonus-points";
 
 @Component({
     selector: "mt-input-bonus-points",
@@ -8,6 +9,10 @@ import { Component, OnInit } from "@angular/core";
 })
 
 export class InputBonusPointsComponent implements OnInit {
+
+    @Input() bonusPoints: BonusPoints;
+    @Input() color: string;
+
     constructor() {
     }
 

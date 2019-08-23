@@ -5,7 +5,7 @@ import { PlayerScoreCard } from "../models/player-score-card";
     providedIn: "root"
 })
 
-export class ScoringCacheService {
+export class CacheService {
 
     playerScoreCards: Array<PlayerScoreCard> = [];
 

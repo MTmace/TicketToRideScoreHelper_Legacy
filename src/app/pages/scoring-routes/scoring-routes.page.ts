@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ScoringCacheService } from "../../services/scoring-cache.service";
+import { CacheService } from "../../services/cache.service";
 import { DataService } from "../../services/data.service";
 import { RouteLengthPoints } from "../../models/route-length-points";
 import { PlayerScoreCard } from "../../models/player-score-card";
@@ -8,8 +8,8 @@ import { TouchGestureEventData } from "tns-core-modules/ui/gestures/gestures";
 @Component({
     selector: "mt-scoring-routes",
     moduleId: module.id,
-    templateUrl: "./scoring-routes.component.html",
-    styleUrls: ["./scoring-routes.css"]
+    templateUrl: "./scoring-routes.page.html",
+    styleUrls: ["./scoring-routes.page.css"]
 })
 
 export class ScoringRoutesPage implements OnInit {
@@ -18,7 +18,7 @@ export class ScoringRoutesPage implements OnInit {
     start: number;
     end: number;
 
-    constructor(private scoringCacheService: ScoringCacheService,
+    constructor(private cacheService: CacheService,
         private dataService: DataService) {
     }
 

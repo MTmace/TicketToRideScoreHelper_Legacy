@@ -16,13 +16,32 @@
 
     <!-- TODO: add scrolling -->
     <StackLayout>
-        <Label text="Manually calculate completed tickets and other bonus points."
-            class="text-left instructions"
+        <Label text="Manually calculate completed tickets and other points."
+            class="text-left"
             marginLeft="40px"
             marginTop="50px"
-            marginBottom="20px"
-            verticalAlignment="middle">
+            marginBottom="50px">
         </Label>
-    </StackLayout>
+
+        <StackLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards; let i = index"
+            marginLeft="40px"
+            marginRight="40px"
+            paddingBottom="30px">
     
+            <StackLayout borderTopWidth="4" 
+                borderLeftWidth="1" 
+                borderRightWidth="1" 
+                borderBottomWidth="1" 
+                [borderColor]="playerScoreCard.playerColor.backgroundColor">
+                <mt-input-bonus-points *ngFor="let bonusPoints of dataService.getBonusPointsList(); let i = index" 
+                    [bonusPoints]="bonusPoints" 
+                    [color]="playerScoreCard.playerColor.backgroundColor">
+                </mt-input-bonus-points>
+            </StackLayout>
+    
+        </StackLayout>
+
+    </StackLayout>
+
+
 </Page>

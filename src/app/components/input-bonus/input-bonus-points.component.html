@@ -1,3 +1,20 @@
-<StackLayout>
-    <Label text="hello" class="text-left"></Label>
-</StackLayout>
+<GridLayout columns="auto, *" rows="40" paddingRight="40px">
+    <Label row="0" col="0" [text]="bonusPoints.name" verticalAlignment="middle" paddingLeft="20px"></Label>
+    <Switch row="0"
+        col="1"
+        *ngIf="bonusPoints.points"
+        checked="false"
+        [color]="color"
+        backgroundColor="green" 
+        offBackgroundColor="red">
+    </Switch>
+    <TextField row="0"
+        col="1"
+        width="70"
+        *ngIf="!bonusPoints.points"
+        [text]="bonusPoints.points"
+        class="input input-border"
+        keyboardType="number"
+        horizontalAlignment="right">
+    </TextField>
+</GridLayout>

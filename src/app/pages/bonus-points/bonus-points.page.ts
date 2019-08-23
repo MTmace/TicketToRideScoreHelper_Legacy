@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { DataService } from "~/app/services/data.service";
+import { CacheService } from "~/app/services/cache.service";
 
 @Component({
     selector: "mt-bonus-points",
@@ -9,7 +11,8 @@ import { Component, OnInit } from "@angular/core";
 
 export class BonusPointsPage implements OnInit {
 
-    constructor() {
+    constructor(private dataService: DataService,
+        private cacheService: CacheService) {
     }
 
     ngOnInit(): void {

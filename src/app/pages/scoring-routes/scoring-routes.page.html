@@ -34,7 +34,7 @@
                     fontSize="18">
                 </Label>
 
-                <GridLayout *ngFor="let playerScoreCard of scoringCacheService.playerScoreCards" rows="70" columns="70"> 
+                <GridLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards" rows="70" columns="70"> 
                     <StackLayout>
                         <Button class="btn" 
                             row="0" 
@@ -53,7 +53,7 @@
         </GridLayout> 
 
         <StackLayout orientation="horizontal" backgroundColor="silver" paddingLeft="85px">
-            <Label *ngFor="let playerScoreCard of scoringCacheService.playerScoreCards"
+            <Label *ngFor="let playerScoreCard of cacheService.playerScoreCards"
                 [text]="getScore(playerScoreCard)"
                 [color]="playerScoreCard.playerColor.backgroundColor"
                 width="53"
