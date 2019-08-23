@@ -1,0 +1,41 @@
+<Page>
+    <Page.actionBar>
+        <ActionBar title="Ticket to Ride Scorekeeper">
+            <StackLayout orientation="horizontal">
+                <Label text="Ticket to Ride Scorekeeper" 
+                    class="action-label" 
+                    verticalAlignment="middle">
+                </Label>
+                <Button text="continue" 
+                    class="btn btn-outline"
+                    [isEnabled]="scoringCacheService.playerScoreCards.length > 1"
+                    [nsRouterLink]="['/scoring-routes']">
+                </Button>
+            </StackLayout>
+        </ActionBar>
+    </Page.actionBar>
+
+    <!-- TODO: add scrolling -->
+    <StackLayout>
+    
+        <StackLayout orientation="horizontal">
+            <Label text="Select colors for the players."
+                class="text-left instructions"
+                marginLeft="40px"
+                marginTop="50px"
+                verticalAlignment="middle">
+            </Label>    
+        </StackLayout>
+        
+        <StackLayout *ngFor="let playerColor of playerColors; let i = index">
+            <Button [text]="playerColor.name" 
+                class="btn" 
+                [ngClass]="{ notSelected: isEnabled(playerColor.name) }"
+                [color]="playerColor.color"
+                [backgroundColor]="playerColor.backgroundColor"
+                (tap)='selectPlayerColor(playerColor)'>
+            </Button>
+        </StackLayout>
+        
+    </StackLayout>
+</Page>

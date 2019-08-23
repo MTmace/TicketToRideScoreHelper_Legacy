@@ -1,0 +1,27 @@
+.notSelected {
+    opacity:0.25;
+}
+
+button[playerColorAttr='Green']{
+    background-color: #008000;
+    color: #FFFFFF;
+}
+
+button[playerColorAttr='Red']{
+    background-color:#FF0000;
+    color: #FFFFFF;
+}
+
+button[playerColorAttr='Yellow']{
+    background-color:#FFFF00;
+}
+
+button[playerColorAttr='Blue']{
+    background-color:#008080;
+    color: #FFFFFF;
+}
+
+button[playerColorAttr='Black']{
+    background-color:#000000;
+    color: #FFFFFF;
+}

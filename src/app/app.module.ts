@@ -6,7 +6,7 @@ import { AppComponent } from "./app.component";
 import { BonusPointsPage } from "./pages/bonus-points/bonus-points.page";
 import { ScoringRoutesPage } from "./pages/scoring-routes/scoring-routes.page";
 import { SelectPlayersPage } from "./pages/select-players/select-players.page";
-import { InputBonusPointsComponent } from "./shared/input-bonus-points/input-bonus-points.component";
+import { InputBonusPointsComponent } from "./components/input-bonus/input-bonus-points.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";

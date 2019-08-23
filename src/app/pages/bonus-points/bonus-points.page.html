@@ -1,0 +1,28 @@
+<Page>
+    <Page.actionBar>
+        <ActionBar title="Ticket to Ride Scorekeeper">
+            <StackLayout orientation="horizontal">
+                <Label text="Ticket to Ride Scorekeeper"
+                    class="action-label"
+                    verticalAlignment="middle">
+                </Label>
+                <Button text="continue" 
+                    class="btn btn-outline"
+                    [nsRouterLink]="['/display-winner']">
+                </Button>
+            </StackLayout>
+        </ActionBar>
+    </Page.actionBar>
+
+    <!-- TODO: add scrolling -->
+    <StackLayout>
+        <Label text="Manually calculate completed tickets and other bonus points."
+            class="text-left instructions"
+            marginLeft="40px"
+            marginTop="50px"
+            marginBottom="20px"
+            verticalAlignment="middle">
+        </Label>
+    </StackLayout>
+    
+</Page>
