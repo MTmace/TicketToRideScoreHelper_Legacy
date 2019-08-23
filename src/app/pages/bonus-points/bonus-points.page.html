@@ -1,12 +1,12 @@
 <Page>
     <Page.actionBar>
-        <ActionBar title="Ticket to Ride Scorekeeper">
+        <ActionBar title="Ticket to Ride Scorekeeper5">
             <StackLayout orientation="horizontal">
                 <Label text="Ticket to Ride Scorekeeper"
                     class="action-label"
                     verticalAlignment="middle">
                 </Label>
-                <Button text="continue" 
+                <Button text="Continue" 
                     class="btn btn-outline"
                     [nsRouterLink]="['/display-winner']">
                 </Button>
@@ -35,13 +35,14 @@
                 [borderColor]="playerScoreCard.playerColor.backgroundColor">
                 <mt-input-bonus-points *ngFor="let bonusPoints of dataService.getBonusPointsList(); let i = index" 
                     [bonusPoints]="bonusPoints" 
-                    [color]="playerScoreCard.playerColor.backgroundColor">
+                    [playerScoreCard]="playerScoreCard">
                 </mt-input-bonus-points>
             </StackLayout>
     
+            <Label [text]="playerScoreCard.bonusPoints.length"></Label>
+
         </StackLayout>
 
     </StackLayout>
-
 
 </Page>

@@ -4,15 +4,16 @@
         col="1"
         *ngIf="bonusPoints.points"
         checked="false"
-        [color]="color"
+        [color]="playerScoreCard.playerColor.backgroundColor"
         backgroundColor="green" 
-        offBackgroundColor="red">
+        offBackgroundColor="red"
+        (checkedChange)="onCheckedChange($event)">
     </Switch>
     <TextField row="0"
         col="1"
         width="70"
         *ngIf="!bonusPoints.points"
-        [text]="bonusPoints.points"
+        [text]="bonusPointValue"
         class="input input-border"
         keyboardType="number"
         horizontalAlignment="right">

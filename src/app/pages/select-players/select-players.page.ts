@@ -3,6 +3,8 @@ import { DataService } from "../../services/data.service";
 import { PlayerColor } from "../../models/player-color";
 import { PlayerScoreCard } from "../../models/player-score-card";
 import { CacheService } from "../../services/cache.service";
+import { BonusPointsPage } from "../bonus-points/bonus-points.page";
+import { BonusPoints } from "~/app/models/bonus-points";
 
 // TODO: Sort ScoreCards by PlayerColor name
 
@@ -16,12 +18,12 @@ import { CacheService } from "../../services/cache.service";
 export class SelectPlayersPage implements OnInit {
     playerColors: Array<PlayerColor>;
 
-    constructor(private playerColorService: DataService,
+    constructor(private dataService: DataService,
         private cacheService: CacheService) { 
         }
 
     ngOnInit(): void {
-        this.playerColors = this.playerColorService.getPlayerColors();
+        this.playerColors = this.dataService.getPlayerColors();
     }
 
     selectPlayerColor(selectedPlayerColor: PlayerColor) {
@@ -34,10 +36,21 @@ export class SelectPlayersPage implements OnInit {
     }
 
     private getNewScoreCard(playerColor: PlayerColor): PlayerScoreCard {
-        return <PlayerScoreCard>({
+        const bonusPoints = this.dataService.getBonusPointsList();
+
+        var c = <PlayerScoreCard>({
           playerColor: playerColor,
           routeCounts: [],
           bonusPoints: []
         });
+
+        // bonusPoints.forEach(bonusPoint => {
+        //     c.bonusPoints.push(<BonusPoints>({
+        //         name: bonusPoint.name,
+        //         points: bonusPoint.points,
+        //         description: bonusPoint.points})
+        //     });
+
+        return c;
     }
 }
