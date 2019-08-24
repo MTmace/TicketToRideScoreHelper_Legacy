@@ -7,7 +7,8 @@
                     verticalAlignment="middle">
                 </Label>
                 <Button text="continue" 
-                    class="btn btn-outline">
+                    class="btn btn-outline"
+                    [nsRouterLink]="['/bonus-points']">
                 </Button>
             </StackLayout>
         </ActionBar>
@@ -33,7 +34,7 @@
                     fontSize="18">
                 </Label>
 
-                <GridLayout *ngFor="let playerScoreCard of scoringCacheService.playerScoreCards" rows="70" columns="70"> 
+                <GridLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards" rows="70" columns="70"> 
                     <StackLayout>
                         <Button class="btn" 
                             row="0" 
@@ -46,13 +47,13 @@
                             (touch)="onTouch($event, routeLengthPoints, playerScoreCard)">
                         </Button>
                     </StackLayout>
-                </GridLayout> 
+                </GridLayout>
                     
             </StackLayout>
         </GridLayout> 
 
         <StackLayout orientation="horizontal" backgroundColor="silver" paddingLeft="85px">
-            <Label *ngFor="let playerScoreCard of scoringCacheService.playerScoreCards"
+            <Label *ngFor="let playerScoreCard of cacheService.playerScoreCards"
                 [text]="getScore(playerScoreCard)"
                 [color]="playerScoreCard.playerColor.backgroundColor"
                 width="53"

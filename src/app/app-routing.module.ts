@@ -2,13 +2,15 @@ import { NgModule } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { Routes } from "@angular/router";
 
-import { SelectPlayersComponent } from "./select-players/select-players.component";
-import { ScoringRoutesComponent } from "./scoring-routes/scoring-routes.component";
+import { BonusPointsPage } from "./pages/bonus-points/bonus-points.page";
+import { ScoringRoutesPage } from "./pages/scoring-routes/scoring-routes.page";
+import { SelectPlayersPage } from "./pages/select-players/select-players.page";
 
 const routes: Routes = [
     { path: "", redirectTo: "/select-players", pathMatch: "full" },
-    { path: "select-players", component: SelectPlayersComponent },
-    { path: "scoring-routes", component: ScoringRoutesComponent }
+    { path: "bonus-points", component: BonusPointsPage },
+    { path: "scoring-routes", component: ScoringRoutesPage },
+    { path: "select-players", component: SelectPlayersPage }
 ];
 
 @NgModule({

@@ -1,10 +1,13 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { SelectPlayersComponent } from "./select-players/select-players.component";
-import { ScoringRoutesComponent } from "./scoring-routes/scoring-routes.component";
+import { BonusPointsPage } from "./pages/bonus-points/bonus-points.page";
+import { ScoringRoutesPage } from "./pages/scoring-routes/scoring-routes.page";
+import { SelectPlayersPage } from "./pages/select-players/select-players.page";
+import { InputBonusPointsComponent } from "./components/input-bonus/input-bonus-points.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -18,12 +21,18 @@ import { ScoringRoutesComponent } from "./scoring-routes/scoring-routes.componen
     ],
     imports: [
         NativeScriptModule,
-        AppRoutingModule
+        AppRoutingModule,
+        ReactiveFormsModule
     ],
     declarations: [
         AppComponent,
-        SelectPlayersComponent,
-        ScoringRoutesComponent
+// PAGE
+        BonusPointsPage,
+        ScoringRoutesPage,
+        SelectPlayersPage,
+
+// COMPONENTS
+        InputBonusPointsComponent
     ],
     providers: [],
     schemas: [

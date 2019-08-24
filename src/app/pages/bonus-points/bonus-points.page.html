@@ -1,0 +1,48 @@
+<Page>
+    <Page.actionBar>
+        <ActionBar title="Ticket to Ride Scorekeeper5">
+            <StackLayout orientation="horizontal">
+                <Label text="Ticket to Ride Scorekeeper"
+                    class="action-label"
+                    verticalAlignment="middle">
+                </Label>
+                <Button text="Continue" 
+                    class="btn btn-outline"
+                    [nsRouterLink]="['/display-winner']">
+                </Button>
+            </StackLayout>
+        </ActionBar>
+    </Page.actionBar>
+
+    <!-- TODO: add scrolling -->
+    <StackLayout>
+        <Label text="Manually calculate completed tickets and other points."
+            class="text-left"
+            marginLeft="40px"
+            marginTop="50px"
+            marginBottom="50px">
+        </Label>
+
+        <StackLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards; let i = index"
+            marginLeft="40px"
+            marginRight="40px"
+            paddingBottom="30px">
+    
+            <StackLayout borderTopWidth="4" 
+                borderLeftWidth="1" 
+                borderRightWidth="1" 
+                borderBottomWidth="1" 
+                [borderColor]="playerScoreCard.playerColor.backgroundColor">
+                <mt-input-bonus-points *ngFor="let bonusPoints of dataService.getBonusPointsList(); let i = index" 
+                    [bonusPoints]="bonusPoints" 
+                    [playerScoreCard]="playerScoreCard">
+                </mt-input-bonus-points>
+            </StackLayout>
+    
+            <Label [text]="playerScoreCard.bonusPoints.length"></Label>
+
+        </StackLayout>
+
+    </StackLayout>
+
+</Page>

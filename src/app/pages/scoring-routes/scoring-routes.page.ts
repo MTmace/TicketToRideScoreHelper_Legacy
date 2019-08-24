@@ -1,24 +1,24 @@
 import { Component, OnInit } from "@angular/core";
-import { ScoringCacheService } from "../services/scoring-cache.service";
-import { DataService } from "../services/data.service";
-import { RouteLengthPoints } from "../models/route-length-points";
-import { PlayerScoreCard } from "../models/player-score-card";
+import { CacheService } from "../../services/cache.service";
+import { DataService } from "../../services/data.service";
+import { RouteLengthPoints } from "../../models/route-length-points";
+import { PlayerScoreCard } from "../../models/player-score-card";
 import { TouchGestureEventData } from "tns-core-modules/ui/gestures/gestures";
 
 @Component({
     selector: "mt-scoring-routes",
     moduleId: module.id,
-    templateUrl: "./scoring-routes.component.html",
-    styleUrls: ["./scoring-routes.css"]
+    templateUrl: "./scoring-routes.page.html",
+    styleUrls: ["./scoring-routes.page.css"]
 })
 
-export class ScoringRoutesComponent implements OnInit {
+export class ScoringRoutesPage implements OnInit {
     // Tap and long press are both triggered with long press. So we need to handle 1 event 'onTouch'
     // then we determine if the touch event is a tap or long press
     start: number;
     end: number;
 
-    constructor(private scoringCacheService: ScoringCacheService,
+    constructor(private cacheService: CacheService,
         private dataService: DataService) {
     }
 
