@@ -1,0 +1,13 @@
+<ActionBar [title]="title">
+    <StackLayout orientation="horizontal">
+        <Label [text]="title"
+            class="action-label"
+            verticalAlignment="middle">
+        </Label>
+        <Button *ngIf="route" 
+            [text]="buttonText" 
+            class="btn btn-outline"
+            [nsRouterLink]="[route]">
+        </Button>
+    </StackLayout>
+</ActionBar>

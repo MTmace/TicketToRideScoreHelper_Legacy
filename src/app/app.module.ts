@@ -16,6 +16,7 @@ import { ScoringRoutesPage } from "./pages/scoring-routes/scoring-routes.page";
 import { SelectPlayersPage } from "./pages/select-players/select-players.page";
 // import { SharedModule } from './modules/shared/shared.module';
 import { InputBonusPointsComponent } from "./components/input-bonus/input-bonus-points.component";
+import { PageActionBarComponent } from "./components/page-action-bar/page-action-bar.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -41,7 +42,8 @@ import { InputBonusPointsComponent } from "./components/input-bonus/input-bonus-
         SelectPlayersPage,
 
 // COMPONENTS
-        InputBonusPointsComponent
+        InputBonusPointsComponent,
+        PageActionBarComponent
     ],
     providers: [],
     schemas: [

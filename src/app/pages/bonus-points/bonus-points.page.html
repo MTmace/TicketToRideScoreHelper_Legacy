@@ -1,22 +1,14 @@
 <Page>
     <Page.actionBar>
-        <ActionBar title="Ticket to Ride Scorekeeper5">
-            <StackLayout orientation="horizontal">
-                <Label text="Ticket to Ride Scorekeeper"
-                    class="action-label"
-                    verticalAlignment="middle">
-                </Label>
-                <Button text="Continue" 
-                    class="btn btn-outline"
-                    [nsRouterLink]="['/outcome']">
-                </Button>
-            </StackLayout>
-        </ActionBar>
+        <mt-page-action-bar title="Ticket to Ride Scorekeeper" 
+            buttonText="Continue"
+            route="/outcome">
+        </mt-page-action-bar>
     </Page.actionBar>
 
     <!-- TODO: add scrolling -->
     <StackLayout>
-        <Label text="Manually calculate completed tickets and other points."
+        <Label text="Manually calculate completed tickets and other points.ww"
             class="text-left"
             marginLeft="40px"
             marginTop="50px"
