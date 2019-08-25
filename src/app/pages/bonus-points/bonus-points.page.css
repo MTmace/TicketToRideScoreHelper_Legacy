@@ -1,0 +1,16 @@
+.instructions {
+    margin-bottom: 50px;
+}
+
+.bonus-points-layout {
+    margin-left:40px;
+    margin-right:40px;
+    padding-bottom:30px;
+}
+
+.bonus-points-layout StackLayout {
+    border-top-width:4;
+    border-left-width:1;
+    border-right-width:1;
+    border-bottom-width:1;
+}

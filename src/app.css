@@ -16,6 +16,11 @@ page {
     color: #000000;
 }
 
+.instructions {
+    margin-left:40px;
+    margin-top:50px;
+}
+
 .action-label {
     font-weight: bold;
     font-size: 18;

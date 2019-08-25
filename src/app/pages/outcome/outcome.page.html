@@ -7,19 +7,15 @@
         </mt-page-action-bar>
     </Page.actionBar>
 
-    <!-- TODO: add scrolling -->
-    <StackLayout>
-        <Label 
-            *ngFor="let playerScore of scores; let i = index"
-            marginLeft="40px"
-            marginRight="40px"
-            marginTop="50px"
-            padding="20px"
-            [text]="playerScore.value" 
-            [backgroundColor]="playerScore.key.backgroundColor"
-            [color]="playerScore.key.color"
-            [ngClass]="{'not-winner': !playerScore.key.isWinner}">
-        </Label>
-    </StackLayout>
-
+    <ScrollView>
+        <StackLayout>
+            <Label 
+                *ngFor="let playerScore of scores; let i = index"
+                [text]="playerScore.value" 
+                [backgroundColor]="playerScore.key.backgroundColor"
+                [color]="playerScore.key.color"
+                [ngClass]="{'not-winner': !playerScore.key.isWinner}">
+            </Label>
+        </StackLayout>
+    </ScrollView>
 </Page>
