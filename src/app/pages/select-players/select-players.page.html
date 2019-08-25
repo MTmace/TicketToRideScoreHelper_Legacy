@@ -8,27 +8,23 @@
         </mt-page-action-bar>
     </Page.actionBar>
 
-    <!-- TODO: add scrolling -->
-    <StackLayout>
-    
-        <StackLayout orientation="horizontal">
-            <Label text="Select colors for the players."
-                class="text-left instructions"
-                marginLeft="40px"
-                marginTop="50px"
-                verticalAlignment="middle">
-            </Label>
-        </StackLayout>
+    <ScrollView>
+        <StackLayout>
         
-        <StackLayout *ngFor="let playerColor of playerColors; let i = index">
-            <Button [text]="playerColor.name" 
-                class="btn" 
-                [ngClass]="{ notSelected: isEnabled(playerColor.name) }"
-                [color]="playerColor.color"
-                [backgroundColor]="playerColor.backgroundColor"
-                (tap)='selectPlayerColor(playerColor)'>
-            </Button>
+            <StackLayout orientation="horizontal">
+                <Label text="Select colors for the players." class="instructions"></Label>
+            </StackLayout>
+            
+            <StackLayout *ngFor="let playerColor of playerColors; let i = index">
+                <Button [text]="playerColor.name" 
+                    class="btn" 
+                    [ngClass]="{ notSelected: isEnabled(playerColor.name) }"
+                    [color]="playerColor.color"
+                    [backgroundColor]="playerColor.backgroundColor"
+                    (tap)='selectPlayerColor(playerColor)'>
+                </Button>
+            </StackLayout>
+            
         </StackLayout>
-        
-    </StackLayout>
+    </ScrollView>
 </Page>
