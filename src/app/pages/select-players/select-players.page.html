@@ -3,7 +3,8 @@
     <Page.actionBar>
         <mt-page-action-bar title="Ticket to Ride Scorekeeper" 
             buttonText="Continue"
-            route="/scoring-routes">
+            route="/scoring-routes"
+            [isEnabled]="cacheService.playerScoreCards.length > 1">
         </mt-page-action-bar>
     </Page.actionBar>
 
@@ -16,7 +17,7 @@
                 marginLeft="40px"
                 marginTop="50px"
                 verticalAlignment="middle">
-            </Label>    
+            </Label>
         </StackLayout>
         
         <StackLayout *ngFor="let playerColor of playerColors; let i = index">

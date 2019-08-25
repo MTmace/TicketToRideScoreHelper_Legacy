@@ -70,7 +70,7 @@ export class ScoringRoutesPage implements OnInit {
             this.end = new Date().getMilliseconds();
             const duration = Math.abs(this.start - this.end)
 
-            duration > 150 ? this.removeRouteFromCard(routeLengthPoints, playerScoreCard) : this.addRouteToCard(routeLengthPoints, playerScoreCard);
+            duration > 200 ? this.removeRouteFromCard(routeLengthPoints, playerScoreCard) : this.addRouteToCard(routeLengthPoints, playerScoreCard);
         }
     }
 }

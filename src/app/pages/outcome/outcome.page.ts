@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { CacheService } from "~/app/services/cache.service";
 import { PlayerColorVM } from "~/app/models/player-color";
+import { Router } from "@angular/router";
 
 interface KeyValue<K, V> {
     key: K
@@ -18,7 +19,8 @@ export class OutcomePage implements OnInit {
 
     scores: KeyValue<PlayerColorVM, number>[] = [];
 
-    constructor(private cacheService: CacheService) {
+    constructor(private cacheService: CacheService,
+        private router: Router) {
     }
 
     ngOnInit(): void {
@@ -34,4 +36,8 @@ export class OutcomePage implements OnInit {
         this.scores.forEach(score => {score.key.isWinner = this.scores[0].value === score.value});
     }
 
+    newGame() {
+        this.cacheService.playerScoreCards = [];
+        this.router.navigate(["/"]);
+    }
 }
