@@ -1,17 +1,9 @@
 <Page>
     <Page.actionBar>
-        <ActionBar title="Ticket to Ride Scorekeeper">
-            <StackLayout orientation="horizontal">
-                <Label text="Ticket to Ride Scorekeeper"
-                    class="action-label"
-                    verticalAlignment="middle">
-                </Label>
-                <Button text="continue" 
-                    class="btn btn-outline"
-                    [nsRouterLink]="['/bonus-points']">
-                </Button>
-            </StackLayout>
-        </ActionBar>
+        <mt-page-action-bar title="Ticket to Ride Scorekeeper" 
+            buttonText="Continue"
+            route="/bonus-points">
+        </mt-page-action-bar>
     </Page.actionBar>
 
     <!-- TODO: add scrolling -->
@@ -24,7 +16,7 @@
             verticalAlignment="middle">
         </Label>
 
-        <GridLayout *ngFor="let routeLengthPoints of dataService.getRouteLengthPointsList()" rows="auto" columns="*" marginLeft="20px"> 
+        <GridLayout *ngFor="let routeLengthPoints of dataService.getRouteLengthPointsList(); let i = index" rows="auto" columns="*" marginLeft="20px"> 
             <StackLayout orientation="horizontal" verticalAlignment="middle">
                 <Label column="0"
                     [text]="routeLengthPoints.length" 
@@ -34,7 +26,7 @@
                     fontSize="18">
                 </Label>
 
-                <GridLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards" rows="70" columns="70"> 
+                <GridLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards; let i = index" rows="70" columns="70"> 
                     <StackLayout>
                         <Button class="btn" 
                             row="0" 
@@ -53,8 +45,8 @@
         </GridLayout> 
 
         <StackLayout orientation="horizontal" backgroundColor="silver" paddingLeft="85px">
-            <Label *ngFor="let playerScoreCard of cacheService.playerScoreCards"
-                [text]="getScore(playerScoreCard)"
+            <Label *ngFor="let playerScoreCard of cacheService.playerScoreCards; let i = index"
+                [text]="cacheService.getRouteCountScore(playerScoreCard)"
                 [color]="playerScoreCard.playerColor.backgroundColor"
                 width="53"
                 height="40"

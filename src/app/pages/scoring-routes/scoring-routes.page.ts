@@ -61,29 +61,16 @@ export class ScoringRoutesPage implements OnInit {
         return routeCount ? routeCount[0] : count;
     }
 
-    // TODO: move to service
-    getScore(playerScoreCard: PlayerScoreCard): number {
-        if (!playerScoreCard.routeCounts) { return 0; }
-
-        var total = 0;
-        playerScoreCard.routeCounts.forEach(routeCount => {
-            total = total + (routeCount[0]* routeCount[1].points);
-        });
-
-        return total;
-    }
-
     onTouch(args: TouchGestureEventData, routeLengthPoints: RouteLengthPoints, playerScoreCard: PlayerScoreCard) {
         if(args.action === "down") {
-          this.start = new Date().getMilliseconds();
+            this.start = new Date().getMilliseconds();
         }
 
         if(args.action === "up") {
-          this.end = new Date().getMilliseconds();
-          const duration = Math.abs(this.start - this.end)
+            this.end = new Date().getMilliseconds();
+            const duration = Math.abs(this.start - this.end)
 
-          duration > 150 ? this.removeRouteFromCard(routeLengthPoints, playerScoreCard) : this.addRouteToCard(routeLengthPoints, playerScoreCard);
+            duration > 200 ? this.removeRouteFromCard(routeLengthPoints, playerScoreCard) : this.addRouteToCard(routeLengthPoints, playerScoreCard);
         }
-      }
-      
+    }
 }

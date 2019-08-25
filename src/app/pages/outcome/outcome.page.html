@@ -1,0 +1,25 @@
+<Page>
+    <Page.actionBar>
+        <mt-page-action-bar title="Ticket to Ride Scorekeeper" 
+            buttonText="New Game"
+            route=""
+            (onTapEmitter)=newGame()>
+        </mt-page-action-bar>
+    </Page.actionBar>
+
+    <!-- TODO: add scrolling -->
+    <StackLayout>
+        <Label 
+            *ngFor="let playerScore of scores; let i = index"
+            marginLeft="40px"
+            marginRight="40px"
+            marginTop="50px"
+            padding="20px"
+            [text]="playerScore.value" 
+            [backgroundColor]="playerScore.key.backgroundColor"
+            [color]="playerScore.key.color"
+            [ngClass]="{'not-winner': !playerScore.key.isWinner}">
+        </Label>
+    </StackLayout>
+
+</Page>

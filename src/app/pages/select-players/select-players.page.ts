@@ -38,19 +38,19 @@ export class SelectPlayersPage implements OnInit {
     private getNewScoreCard(playerColor: PlayerColor): PlayerScoreCard {
         const bonusPoints = this.dataService.getBonusPointsList();
 
-        var c = <PlayerScoreCard>({
+        var playerScoreCard = <PlayerScoreCard>({
           playerColor: playerColor,
           routeCounts: [],
           bonusPoints: []
         });
 
-        // bonusPoints.forEach(bonusPoint => {
-        //     c.bonusPoints.push(<BonusPoints>({
-        //         name: bonusPoint.name,
-        //         points: bonusPoint.points,
-        //         description: bonusPoint.points})
-        //     });
+        bonusPoints.forEach(bonusPoint => {
+            playerScoreCard.bonusPoints.push({
+                name: bonusPoint.name,
+                points: 0,
+                description: bonusPoint.description})
+            });
 
-        return c;
+        return playerScoreCard;
     }
 }

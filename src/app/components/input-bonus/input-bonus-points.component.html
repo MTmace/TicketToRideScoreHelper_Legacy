@@ -13,7 +13,8 @@
         col="1"
         width="70"
         *ngIf="!bonusPoints.points"
-        [text]="bonusPointValue"
+        [text]="initialPoints"
+        (textChange)="onTextChange($event)"
         class="input input-border"
         keyboardType="number"
         horizontalAlignment="right">
