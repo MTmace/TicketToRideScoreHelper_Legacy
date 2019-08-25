@@ -6,4 +6,5 @@ export interface PlayerColor {
 
 export interface PlayerColorVM extends PlayerColor {
     isEnabled: boolean;
+    isWinner: boolean;
 }

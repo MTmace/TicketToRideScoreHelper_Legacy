@@ -8,7 +8,7 @@
                 </Label>
                 <Button text="Continue" 
                     class="btn btn-outline"
-                    [nsRouterLink]="['/display-winner']">
+                    [nsRouterLink]="['/outcome']">
                 </Button>
             </StackLayout>
         </ActionBar>
@@ -38,8 +38,6 @@
                     [playerScoreCard]="playerScoreCard">
                 </mt-input-bonus-points>
             </StackLayout>
-    
-            <Label [text]="playerScoreCard.bonusPoints.length"></Label>
 
         </StackLayout>
 

@@ -10,11 +10,11 @@ import { BonusPoints } from "../models/bonus-points";
 
 export class DataService {
     private playerColors = new Array<PlayerColorVM>(
-        { name: "Green", color: "#FFFFFF", backgroundColor: "#008000", isEnabled: true },
-        { name: "Red", color: "#FFFFFF", backgroundColor: "#FF0000", isEnabled: true },
-        { name: "Yellow", color: "#000000", backgroundColor: "#FFFF00", isEnabled: true },
-        { name: "Blue", color: "#FFFFFF", backgroundColor: "#0000FF", isEnabled: true },
-        { name: "Black", color: "#FFFFFF", backgroundColor: "#000000", isEnabled: true }
+        { name: "Green", color: "#FFFFFF", backgroundColor: "#008000", isEnabled: true, isWinner: false },
+        { name: "Red", color: "#FFFFFF", backgroundColor: "#FF0000", isEnabled: true, isWinner: false },
+        { name: "Yellow", color: "#000000", backgroundColor: "#FFFF00", isEnabled: true, isWinner: false },
+        { name: "Blue", color: "#FFFFFF", backgroundColor: "#0000FF", isEnabled: true, isWinner: false },
+        { name: "Black", color: "#FFFFFF", backgroundColor: "#000000", isEnabled: true, isWinner: false }
     );
 
     private routesPointsList = new Array<RouteLengthPoints>(
