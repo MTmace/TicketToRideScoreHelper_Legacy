@@ -3,8 +3,6 @@ import { DataService } from "../../services/data.service";
 import { PlayerColor } from "../../models/player-color";
 import { PlayerScoreCard } from "../../models/player-score-card";
 import { CacheService } from "../../services/cache.service";
-import { BonusPointsPage } from "../bonus-points/bonus-points.page";
-import { BonusPoints } from "~/app/models/bonus-points";
 
 // TODO: Sort ScoreCards by PlayerColor name
 
@@ -36,16 +34,16 @@ export class SelectPlayersPage implements OnInit {
     }
 
     private getNewScoreCard(playerColor: PlayerColor): PlayerScoreCard {
-        const bonusPoints = this.dataService.getBonusPointsList();
+        const bonusPoints = this.dataService.getBonusPointsDefinitions();
 
         var playerScoreCard = <PlayerScoreCard>({
           playerColor: playerColor,
-          routeCounts: [],
-          bonusPoints: []
+          routeLengthPointsCount: [],
+          bonusPointsCount: []
         });
 
         bonusPoints.forEach(bonusPoint => {
-            playerScoreCard.bonusPoints.push({
+            playerScoreCard.bonusPointsCount.push({
                 name: bonusPoint.name,
                 points: 0,
                 description: bonusPoint.description})

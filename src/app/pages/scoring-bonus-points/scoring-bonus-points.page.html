@@ -13,7 +13,7 @@
             <StackLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards; let i = index" class="bonus-points-layout">
         
                 <StackLayout [borderColor]="playerScoreCard.playerColor.backgroundColor">
-                    <mt-input-bonus-points *ngFor="let bonusPoints of dataService.getBonusPointsList(); let i = index" 
+                    <mt-input-bonus-points *ngFor="let bonusPoints of dataService.getBonusPointsDefinitions(); let i = index" 
                         [bonusPoints]="bonusPoints" 
                         [playerScoreCard]="playerScoreCard">
                     </mt-input-bonus-points>

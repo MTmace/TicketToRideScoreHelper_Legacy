@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { CacheService } from "../../services/cache.service";
 import { DataService } from "../../services/data.service";
-import { RouteLengthPoints } from "../../models/route-length-points";
+import { RouteLengthPointsDefinition } from "../../models/route-length-points-definition";
 import { PlayerScoreCard } from "../../models/player-score-card";
 import { TouchGestureEventData } from "tns-core-modules/ui/gestures/gestures";
 
@@ -27,13 +27,13 @@ export class ScoringRoutesPage implements OnInit {
 
     // TODO: move to service
     // TODO: add unit testing here
-    addRouteToCard(routeLengthPoints: RouteLengthPoints, playerScoreCard: PlayerScoreCard) {
+    addRouteToCard(routeLengthPoints: RouteLengthPointsDefinition, playerScoreCard: PlayerScoreCard) {
         // check to see if the route has been added to the score card
-        var routeCount = playerScoreCard.routeCounts.find(x => x[1].length === routeLengthPoints.length);
+        var routeCount = playerScoreCard.routeLengthPointsCount.find(x => x[1].length === routeLengthPoints.length);
 
         if (!routeCount) {
             // not route was found, so add it
-            playerScoreCard.routeCounts.push([1, routeLengthPoints]);
+            playerScoreCard.routeLengthPointsCount.push([1, routeLengthPoints]);
         } else {
             // TODO: the limit should be per game and not per person. Need to validate limit against all players
             // If the routeCounts have not reached their limits then add it to the ScoreCard
@@ -44,24 +44,24 @@ export class ScoringRoutesPage implements OnInit {
     }
 
     // TODO: move to service
-    removeRouteFromCard(routeLengthPoints: RouteLengthPoints, playerScoreCard: PlayerScoreCard) {
+    removeRouteFromCard(routeLengthPoints: RouteLengthPointsDefinition, playerScoreCard: PlayerScoreCard) {
         // check to see if the route has been added to the score card
-        var routeCount = playerScoreCard.routeCounts.find(x => x[1].length === routeLengthPoints.length);
+        var routeCount = playerScoreCard.routeLengthPointsCount.find(x => x[1].length === routeLengthPoints.length);
 
         if (routeCount && routeCount[0] > 0 ) {
             routeCount[0] = routeCount[0] - 1;
         }
     }
 
-    getRouteLengthPoints(routeLengthPoints: RouteLengthPoints, playerScoreCard: PlayerScoreCard): number {
+    getRouteLengthPoints(routeLengthPoints: RouteLengthPointsDefinition, playerScoreCard: PlayerScoreCard): number {
         // check to see if the route has been added to the score card
-        const routeCount = playerScoreCard.routeCounts.find(x => x[1].length === routeLengthPoints.length);
+        const routeCount = playerScoreCard.routeLengthPointsCount.find(x => x[1].length === routeLengthPoints.length);
         var count = 0;
 
         return routeCount ? routeCount[0] : count;
     }
 
-    onTouch(args: TouchGestureEventData, routeLengthPoints: RouteLengthPoints, playerScoreCard: PlayerScoreCard) {
+    onTouch(args: TouchGestureEventData, routeLengthPoints: RouteLengthPointsDefinition, playerScoreCard: PlayerScoreCard) {
         if(args.action === "down") {
             this.start = new Date().getMilliseconds();
         }

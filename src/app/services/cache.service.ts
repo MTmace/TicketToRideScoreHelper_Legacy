@@ -10,11 +10,11 @@ export class CacheService {
     playerScoreCards: Array<PlayerScoreCard> = [];
 
     public getRouteCountScore(playerScoreCard: PlayerScoreCard): number {
-        if (!playerScoreCard.routeCounts) { return 0; }
+        if (!playerScoreCard.routeLengthPointsCount) { return 0; }
 
         var total = 0;
 
-        playerScoreCard.routeCounts.forEach(routeCount => {
+        playerScoreCard.routeLengthPointsCount.forEach(routeCount => {
             total = total + (routeCount[0]* routeCount[1].points);
         });
 
@@ -24,7 +24,7 @@ export class CacheService {
     public getTotalScore(playerScoreCard: PlayerScoreCard) : number {
         var total = this.getRouteCountScore(playerScoreCard);
 
-        playerScoreCard.bonusPoints.forEach(b => {
+        playerScoreCard.bonusPointsCount.forEach(b => {
             total = total + b.points;
         });
 

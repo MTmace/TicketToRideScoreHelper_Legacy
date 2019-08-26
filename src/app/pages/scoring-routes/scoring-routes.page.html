@@ -10,7 +10,7 @@
         <StackLayout>
             <Label text="Long press (hold down the button) to subtract a route." class="instructions"></Label>
 
-            <GridLayout *ngFor="let routeLengthPoints of dataService.getRouteLengthPointsList(); let i = index" rows="auto" columns="*" class="route-length-points"> 
+            <GridLayout *ngFor="let routeLengthPoints of dataService.getRouteLengthPointsDefinitions(); let i = index" rows="auto" columns="*" class="route-length-points"> 
                 <StackLayout orientation="horizontal">
                     <Label column="0" [text]="routeLengthPoints.length"></Label>
 

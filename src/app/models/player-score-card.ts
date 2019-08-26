@@ -1,9 +1,9 @@
 import { PlayerColor } from "./player-color";
-import { RouteLengthPoints } from "./route-length-points";
-import { BonusPoints } from "./bonus-points";
+import { RouteLengthPointsDefinition } from "./route-length-points-definition";
+import { BonusPointsDefinition } from "./bonus-points-definition";
 
 export interface PlayerScoreCard {
     playerColor: PlayerColor;
-    routeCounts: Array<[number, RouteLengthPoints]>;
-    bonusPoints: Array<BonusPoints>
+    routeLengthPointsCount: Array<[number, RouteLengthPointsDefinition]>;
+    bonusPointsCount: Array<BonusPointsDefinition>
 }
