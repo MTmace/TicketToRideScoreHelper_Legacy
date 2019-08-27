@@ -37,7 +37,7 @@ export class ScoringRoutesPage implements OnInit {
         } else {
             // TODO: the limit should be per game and not per person. Need to validate limit against all players
             // If the routeCounts have not reached their limits then add it to the ScoreCard
-            if (routeCount[0] < routeCount[1].limit) {
+            if (!routeCount[1].limit || routeCount[0] < routeCount[1].limit) {
                 routeCount[0] = routeCount[0] + 1;
             }
         }

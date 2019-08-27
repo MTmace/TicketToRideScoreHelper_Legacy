@@ -1,20 +1,18 @@
-<ActionBar [title]="title">
-    <StackLayout orientation="horizontal">
-        <Label [text]="title"
-            class="action-label"
-            verticalAlignment="middle">
-        </Label>
-        <Button *ngIf="route && buttonText" 
-            [text]="buttonText" 
-            class="btn btn-outline"
-            [nsRouterLink]="[route]"
-            [isEnabled]="isEnabled">
-        </Button>
-        <Button *ngIf="buttonText && !route" 
-            [text]="buttonText" 
-            class="btn btn-outline"
-            (tap)="onTap()"
-            [isEnabled]="isEnabled">
-        </Button>
-    </StackLayout>
-</ActionBar>
+<StackLayout orientation="horizontal">
+    <Label [text]="title"
+        class="action-label"
+        verticalAlignment="middle">
+    </Label>
+    <Button *ngIf="route && buttonText" 
+        [text]="buttonText" 
+        class="btn btn-outline"
+        [nsRouterLink]="[route]"
+        [isEnabled]="isEnabled">
+    </Button>
+    <Button *ngIf="buttonText && !route" 
+        [text]="buttonText" 
+        class="btn btn-outline"
+        (tap)="onTap()"
+        [isEnabled]="isEnabled">
+    </Button>
+</StackLayout>

@@ -1,5 +1,6 @@
 // nativescript
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
 
 // angular
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +17,7 @@ import { ScoringBonusPointsPage } from "./pages/scoring-bonus-points/scoring-bon
 import { SelectPlayersPage } from "./pages/select-players/select-players.page";
 import { InputBonusPointsComponent } from "./components/input-bonus/input-bonus-points.component";
 import { PageActionBarComponent } from "./components/page-action-bar/page-action-bar.component";
+import { TestPage } from "./pages/test/test.page";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -30,7 +32,8 @@ import { PageActionBarComponent } from "./components/page-action-bar/page-action
     imports: [
         NativeScriptModule,
         AppRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NativeScriptUISideDrawerModule
     ],
     declarations: [
         AppComponent,
@@ -39,6 +42,7 @@ import { PageActionBarComponent } from "./components/page-action-bar/page-action
         ScoringBonusPointsPage,
         ScoringRoutesPage,
         SelectPlayersPage,
+        TestPage,
 
 // COMPONENTS
         InputBonusPointsComponent,

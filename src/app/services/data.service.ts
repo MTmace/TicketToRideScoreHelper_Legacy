@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
-import { PlayerColorVM, PlayerColor } from "../models/player-color";
+import { PlayerColor } from "../models/player-color";
 import { RouteLengthPointsDefinition } from "../models/route-length-points-definition";
-import { PlayerScoreCard } from "../models/player-score-card";
 import { BonusPointsDefinition } from "../models/bonus-points-definition";
 import { GameProfile } from "../models/game-profile";
 import { ExpansionDefinition } from "../models/expansion-definition";
@@ -65,14 +64,6 @@ export class DataService {
             description: "Ticket to Ride: Nordic Countries"
         }
     )
-
-    // private playerColors = new Array<PlayerColorVM>(
-    //     { name: "Green", color: "#FFFFFF", backgroundColor: "#008000", isEnabled: true, isWinner: false },
-    //     { name: "Red", color: "#FFFFFF", backgroundColor: "#FF0000", isEnabled: true, isWinner: false },
-    //     { name: "Yellow", color: "#000000", backgroundColor: "#FFFF00", isEnabled: true, isWinner: false },
-    //     { name: "Blue", color: "#FFFFFF", backgroundColor: "#0000FF", isEnabled: true, isWinner: false },
-    //     { name: "Black", color: "#FFFFFF", backgroundColor: "#000000", isEnabled: true, isWinner: false }
-    // );
 
     getPlayerColors(): Array<PlayerColor> {
         return this.gameProfiles[1].playerColors;

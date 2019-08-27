@@ -1,0 +1,46 @@
+<!-- <ActionBar>
+    <NavigationButton icon="res://ic_menu" (tap)="openDrawer()" *ngIf="isNavVisible"></NavigationButton>
+    <ActionItem icon="res://ic_menu" ios.position="left" tap="showSideDrawer" *ngIf="isItemVisible"></ActionItem>
+
+    <StackLayout orientation="horizontal">
+        <Label text="title"
+            class="action-label"
+            verticalAlignment="middle">
+        </Label>
+        <Button text="buttonText" 
+            class="btn btn-outline">
+        </Button>
+    </StackLayout>
+</ActionBar> -->
+<Page.actionBar>
+    <mt-page-action-bar title="Ticket to Ride Scorekeeper" 
+        buttonText="Continue"
+        route="/scoring-routes"
+        [isEnabled]="true">
+    </mt-page-action-bar>
+
+
+<RadSideDrawer tkExampleTitle tkToggleNavButton>
+    <GridLayout tkDrawerContent rows="56, *" class="sideStackLayout">
+        <StackLayout class="sideTitleStackLayout">
+            <Label text="Navigation Menu"></Label>
+        </StackLayout>
+        <ScrollView row="1">
+            <StackLayout class="sideStackLayout">
+                <Label text="Primarye" class="sideLabel sideLightGrayLabel"></Label>
+                <Label text="Social" class="sideLabel"></Label>
+                <Label text="Promotions" class="sideLabel"></Label>
+                <Label text="Labels" class="sideLabel sideLightGrayLabel"></Label>
+                <Label text="Important" class="sideLabel"></Label>
+                <Label text="Starred" class="sideLabel"></Label>
+                <Label text="Sent Mail" class="sideLabel"></Label>
+                <Label text="Drafts" class="sideLabel"></Label>
+                <Label text="Close Drawer" color="lightgray" padding="10" (tap)="onCloseDrawerTap()"></Label>
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+    <StackLayout tkMainContent>
+        <Label [text]="mainContentText" textWrap="true" class="drawerContentText"></Label>
+        <Button text="OPEN DRAWER" (tap)="openDrawer()" class="drawerContentButton"></Button>
+    </StackLayout>
+</RadSideDrawer>

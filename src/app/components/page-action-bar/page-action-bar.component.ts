@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
     selector: "mt-page-action-bar",
@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
     styleUrls: ["./page-action-bar.component.css"]
 })
 
-export class PageActionBarComponent implements OnInit {
+export class PageActionBarComponent {
     @Input() title: string = 'Ticket to Ride Scorekeeper';
     @Input() buttonText: string = 'Continue';
     @Input() route: string = '';
@@ -18,11 +18,8 @@ export class PageActionBarComponent implements OnInit {
     constructor() {
     }
 
-    ngOnInit(): void {
-
-    }
-
     onTap() {
         this.onTapEmitter.emit();
     }
+
 }
