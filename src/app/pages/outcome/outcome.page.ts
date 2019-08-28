@@ -1,7 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef, ViewChild } from "@angular/core";
 import { CacheService } from "~/app/services/cache.service";
 import { PlayerColorVM } from "~/app/models/player-color";
 import { Router } from "@angular/router";
+import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
+import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 
 interface KeyValue<K, V> {
     key: K
@@ -15,12 +17,21 @@ interface KeyValue<K, V> {
     styleUrls: ["./outcome.page.css"]
 })
 
-export class OutcomePage implements OnInit {
+export class OutcomePage implements AfterViewInit, OnInit {
 
     scores: KeyValue<PlayerColorVM, number>[] = [];
 
     constructor(private cacheService: CacheService,
-        private router: Router) {
+        private router: Router,
+        private _changeDetectionRef: ChangeDetectorRef) {
+    }
+
+    @ViewChild(RadSideDrawerComponent, { static: false }) public drawerComponent: RadSideDrawerComponent;
+    private drawer: RadSideDrawer;
+    
+    ngAfterViewInit() {
+        this.drawer = this.drawerComponent.sideDrawer;
+        this._changeDetectionRef.detectChanges();
     }
 
     ngOnInit(): void {

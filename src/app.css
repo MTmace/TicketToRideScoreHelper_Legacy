@@ -25,3 +25,13 @@ page {
     font-weight: bold;
     font-size: 18;
 }
+
+/* RadSideDrawer */
+.drawerContentText {
+    font-size: 13;
+    padding: 10;
+}
+
+.drawerContentButton {
+    margin: 10;
+}

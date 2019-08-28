@@ -1,4 +1,7 @@
-<ActionBar [title]="title">
+<ActionBar>
+    <NavigationButton icon="res://ic_menu" (tap)="onNavTap()" *ngIf="isNavVisible"></NavigationButton>
+    <ActionItem icon="res://ic_menu" ios.position="left" (tap)="onNavTap()" *ngIf="isItemVisible"></ActionItem>
+
     <StackLayout orientation="horizontal">
         <Label [text]="title"
             class="action-label"

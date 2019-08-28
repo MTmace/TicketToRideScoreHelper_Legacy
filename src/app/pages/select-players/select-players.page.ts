@@ -1,12 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef, AfterViewInit, ViewChild } from "@angular/core";
 import { DataService } from "../../services/data.service";
 import { PlayerColor } from "../../models/player-color";
-import { PlayerScoreCard } from "../../models/player-score-card";
 import { CacheService } from "../../services/cache.service";
-import { BonusPointsPage } from "../bonus-points/bonus-points.page";
-import { BonusPoints } from "~/app/models/bonus-points";
-
-// TODO: Sort ScoreCards by PlayerColor name
+import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
+import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 
 @Component({
     selector: "mt-select-players",
@@ -15,42 +12,33 @@ import { BonusPoints } from "~/app/models/bonus-points";
     styleUrls: ["./select-players.page.css"]
 })
 
-export class SelectPlayersPage implements OnInit {
-    playerColors: Array<PlayerColor>;
+export class SelectPlayersPage implements AfterViewInit, OnInit {
 
     constructor(private dataService: DataService,
-        private cacheService: CacheService) { 
-        }
+        private cacheService: CacheService,
+        private _changeDetectionRef: ChangeDetectorRef) { 
+    }
+
+    @ViewChild(RadSideDrawerComponent, { static: false }) public drawerComponent: RadSideDrawerComponent;
+    private drawer: RadSideDrawer;
+    
+    ngAfterViewInit() {
+        this.drawer = this.drawerComponent.sideDrawer;
+        this._changeDetectionRef.detectChanges();
+    }
 
     ngOnInit(): void {
-        this.playerColors = this.dataService.getPlayerColors();
+        // Set default game to the 1st game profile
+        this.cacheService.gameProfile = this.cacheService.gameProfile || this.dataService.getGameProfiles()[0];
     }
 
     selectPlayerColor(selectedPlayerColor: PlayerColor) {
         const foundIndex = this.cacheService.playerScoreCards.findIndex(x => x.playerColor.name === selectedPlayerColor.name);
-        foundIndex === -1 ? this.cacheService.playerScoreCards.push(this.getNewScoreCard(selectedPlayerColor)) : this.cacheService.playerScoreCards.splice(foundIndex, 1);
+        // Create a scorecard if one is not found, remove the card if it does
+        foundIndex === -1 ? this.cacheService.createScoreCard(selectedPlayerColor) : this.cacheService.removeScoreCard(foundIndex);
     }
 
     isEnabled(selectedPlayerColor: string) : boolean {
         return !this.cacheService.playerScoreCards.some(x => x.playerColor.name === selectedPlayerColor);
-    }
-
-    private getNewScoreCard(playerColor: PlayerColor): PlayerScoreCard {
-        const bonusPoints = this.dataService.getBonusPointsList();
-
-        var playerScoreCard = <PlayerScoreCard>({
-          playerColor: playerColor,
-          routeCounts: [],
-          bonusPoints: []
-        });
-
-        bonusPoints.forEach(bonusPoint => {
-            playerScoreCard.bonusPoints.push({
-                name: bonusPoint.name,
-                points: 0,
-                description: bonusPoint.description})
-            });
-
-        return playerScoreCard;
     }
 }

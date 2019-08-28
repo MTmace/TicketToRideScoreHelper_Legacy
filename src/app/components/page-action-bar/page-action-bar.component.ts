@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
+import * as application from "tns-core-modules/application";
 
 @Component({
     selector: "mt-page-action-bar",
@@ -14,15 +15,30 @@ export class PageActionBarComponent implements OnInit {
     @Input() isEnabled = true;
 
     @Output() onTapEmitter = new EventEmitter();
+    @Output() onNavTapEmitter = new EventEmitter();
     
+    isNavVisible = false;
+    isItemVisible = false;
+
     constructor() {
     }
 
     ngOnInit(): void {
-
+        if (application.ios) {
+            this.isNavVisible = false;
+            this.isItemVisible = true;
+        } else if (application.android) {
+            this.isNavVisible = true;
+            this.isItemVisible = false;
+        }
     }
 
     onTap() {
         this.onTapEmitter.emit();
     }
+
+    onNavTap() {
+        this.onNavTapEmitter.emit();
+    }
+
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { BonusPoints } from "~/app/models/bonus-points";
+import { BonusPointsDefinition } from "~/app/models/bonus-points-definition";
 import { EventData } from "tns-core-modules/data/observable"
 import { Switch } from "tns-core-modules/ui/switch";
 import { TextField } from "tns-core-modules/ui/text-field";
@@ -13,17 +13,17 @@ import { PlayerScoreCard } from "~/app/models/player-score-card";
 })
 
 export class InputBonusPointsComponent implements OnInit {
-    @Input() bonusPoints: BonusPoints;
+    @Input() bonusPoints: BonusPointsDefinition;
     @Input() playerScoreCard: PlayerScoreCard;
 
-    playerBonusPoints: BonusPoints;
+    playerBonusPoints: BonusPointsDefinition;
     initialPoints: number;
 
     constructor() {
     }
 
     ngOnInit(): void {
-        this.playerBonusPoints = this.playerScoreCard.bonusPoints.find(bonusPoints => bonusPoints.name === this.bonusPoints.name)
+        this.playerBonusPoints = this.playerScoreCard.bonusPointsCount.find(bonusPoints => bonusPoints.name === this.bonusPoints.name)
 
         if (!this.bonusPoints.points) {
             this.initialPoints = this.playerBonusPoints.points;

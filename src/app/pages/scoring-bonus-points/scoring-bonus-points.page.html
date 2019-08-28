@@ -1,0 +1,34 @@
+<Page>
+    <Page.actionBar>
+        <ActionBar>
+            <mt-page-action-bar title="Ticket to Ride Scorekeeper" 
+                buttonText="Continue"
+                route="/outcome"
+                (onNavTapEmitter)="drawer.toggleDrawerState()">
+            </mt-page-action-bar>
+        </ActionBar>
+    </Page.actionBar>
+
+    <RadSideDrawer>
+        <StackLayout tkDrawerContent>
+            <mt-side-drawer></mt-side-drawer>
+        </StackLayout>
+    
+        <ScrollView tkMainContent>
+            <StackLayout>
+                <Label text="Manually calculate completed tickets and other points." class="instructions"></Label>
+
+                <StackLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards; let i = index" class="bonus-points-layout">
+            
+                    <StackLayout [borderColor]="playerScoreCard.playerColor.backgroundColor">
+                        <mt-input-bonus-points *ngFor="let bonusPoints of cacheService.gameProfile.bonusPointsDefinitions; let i = index" 
+                            [bonusPoints]="bonusPoints" 
+                            [playerScoreCard]="playerScoreCard">
+                        </mt-input-bonus-points>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </RadSideDrawer>    
+
+</Page>

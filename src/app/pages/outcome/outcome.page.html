@@ -1,21 +1,30 @@
 <Page>
     <Page.actionBar>
-        <mt-page-action-bar title="Ticket to Ride Scorekeeper" 
-            buttonText="New Game"
-            route=""
-            (onTapEmitter)=newGame()>
-        </mt-page-action-bar>
+        <ActionBar>
+            <mt-page-action-bar title="Ticket to Ride Scorekeeper" 
+                buttonText="New Game"
+                route=""
+                (onTapEmitter)="newGame()"
+                (onNavTapEmitter)="drawer.toggleDrawerState()">
+            </mt-page-action-bar>
+        </ActionBar>
     </Page.actionBar>
 
-    <ScrollView>
-        <StackLayout>
-            <Label 
-                *ngFor="let playerScore of scores; let i = index"
-                [text]="playerScore.value" 
-                [backgroundColor]="playerScore.key.backgroundColor"
-                [color]="playerScore.key.color"
-                [ngClass]="{'not-winner': !playerScore.key.isWinner}">
-            </Label>
+    <RadSideDrawer>
+        <StackLayout tkDrawerContent>
+            <mt-side-drawer></mt-side-drawer>
         </StackLayout>
-    </ScrollView>
+
+        <ScrollView tkMainContent>
+            <StackLayout>
+                <Label 
+                    *ngFor="let playerScore of scores; let i = index"
+                    [text]="playerScore.value" 
+                    [backgroundColor]="playerScore.key.backgroundColor"
+                    [color]="playerScore.key.color"
+                    [ngClass]="{'not-winner': !playerScore.key.isWinner}">
+                </Label>
+            </StackLayout>
+        </ScrollView>
+    </RadSideDrawer>    
 </Page>
