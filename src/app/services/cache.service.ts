@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { PlayerScoreCard } from "../models/player-score-card";
+import { GameProfile} from "../models/game-profile";
+import { PlayerColor } from "../models/player-color";
 
 @Injectable({
     providedIn: "root"
@@ -7,6 +9,8 @@ import { PlayerScoreCard } from "../models/player-score-card";
 
 export class CacheService {
 
+    gameProfile: GameProfile;
+    
     playerScoreCards: Array<PlayerScoreCard> = [];
 
     public getRouteCountScore(playerScoreCard: PlayerScoreCard): number {
@@ -29,6 +33,36 @@ export class CacheService {
         });
 
         return total;
+    }
+
+    public removeScoreCard(scoreCardIndex: number): void {
+        this.playerScoreCards.splice(scoreCardIndex, 1)
+    }
+
+    public createScoreCard(playerColor: PlayerColor): PlayerScoreCard {
+        const bonusPoints = this.gameProfile.bonusPointsDefinitions;
+
+        var playerScoreCard = <PlayerScoreCard>({
+          playerColor: playerColor,
+          routeLengthPointsCount: [],
+          bonusPointsCount: []
+        });
+
+        bonusPoints.forEach(bonusPoint => {
+            playerScoreCard.bonusPointsCount.push({
+                name: bonusPoint.name,
+                points: 0,
+                description: bonusPoint.description})
+            });
+
+        this.playerScoreCards.push(playerScoreCard);
+
+        return playerScoreCard;
+    }
+
+    public changeGame(newGameProfile: GameProfile) {
+        this.gameProfile = newGameProfile;
+        this.playerScoreCards = [];
     }
 
 }

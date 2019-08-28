@@ -1,18 +1,23 @@
-<StackLayout orientation="horizontal">
-    <Label [text]="title"
-        class="action-label"
-        verticalAlignment="middle">
-    </Label>
-    <Button *ngIf="route && buttonText" 
-        [text]="buttonText" 
-        class="btn btn-outline"
-        [nsRouterLink]="[route]"
-        [isEnabled]="isEnabled">
-    </Button>
-    <Button *ngIf="buttonText && !route" 
-        [text]="buttonText" 
-        class="btn btn-outline"
-        (tap)="onTap()"
-        [isEnabled]="isEnabled">
-    </Button>
-</StackLayout>
+<ActionBar>
+    <NavigationButton icon="res://ic_menu" (tap)="onNavTap()" *ngIf="isNavVisible"></NavigationButton>
+    <ActionItem icon="res://ic_menu" ios.position="left" (tap)="onNavTap()" *ngIf="isItemVisible"></ActionItem>
+
+    <StackLayout orientation="horizontal">
+        <Label [text]="title"
+            class="action-label"
+            verticalAlignment="middle">
+        </Label>
+        <Button *ngIf="route && buttonText" 
+            [text]="buttonText" 
+            class="btn btn-outline"
+            [nsRouterLink]="[route]"
+            [isEnabled]="isEnabled">
+        </Button>
+        <Button *ngIf="buttonText && !route" 
+            [text]="buttonText" 
+            class="btn btn-outline"
+            (tap)="onTap()"
+            [isEnabled]="isEnabled">
+        </Button>
+    </StackLayout>
+</ActionBar>

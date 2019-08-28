@@ -18,6 +18,7 @@ import { SelectPlayersPage } from "./pages/select-players/select-players.page";
 import { InputBonusPointsComponent } from "./components/input-bonus/input-bonus-points.component";
 import { PageActionBarComponent } from "./components/page-action-bar/page-action-bar.component";
 import { TestPage } from "./pages/test/test.page";
+import { SideDrawerComponent } from "./components/side-drawer/side-drawer.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -46,7 +47,8 @@ import { TestPage } from "./pages/test/test.page";
 
 // COMPONENTS
         InputBonusPointsComponent,
-        PageActionBarComponent
+        PageActionBarComponent,
+        SideDrawerComponent
     ],
     providers: [],
     schemas: [

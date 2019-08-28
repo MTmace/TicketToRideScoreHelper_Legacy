@@ -1,57 +1,35 @@
 <Page>
 
     <Page.actionBar>
-        <ActionBar>
-            <NavigationButton icon="res://ic_menu" (tap)="toggleDrawer()" *ngIf="isNavVisible"></NavigationButton>
-            <ActionItem icon="res://ic_menu" ios.position="left" tap="showSideDrawer" *ngIf="isItemVisible"></ActionItem>
-
-            <mt-page-action-bar title="Ticket to Ride Scorekeeper"
-                buttonText="Continue"
-                route="/scoring-routes"
-                [isEnabled]="cacheService.playerScoreCards.length > 1">
-            </mt-page-action-bar>
-        </ActionBar>
+        <mt-page-action-bar title="Ticket to Ride Scorekeeper"
+            buttonText="Continue"
+            route="/scoring-routes"
+            [isEnabled]="cacheService.playerScoreCards.length > 1"
+            (onNavTapEmitter)="drawer.toggleDrawerState()">
+        </mt-page-action-bar>
     </Page.actionBar>
 
-    <RadSideDrawer tkExampleTitle tkToggleNavButton>
-        <GridLayout tkDrawerContent rows="56, *" class="sideStackLayout">
-            <StackLayout class="sideTitleStackLayout">
-                <Label text="Navigation Menu"></Label>
-            </StackLayout>
-            <ScrollView row="1">
-                <StackLayout class="sideStackLayout">
-                    <Label text="Primarye" class="sideLabel sideLightGrayLabel"></Label>
-                    <Label text="Social" class="sideLabel"></Label>
-                    <Label text="Promotions" class="sideLabel"></Label>
-                    <Label text="Labels" class="sideLabel sideLightGrayLabel"></Label>
-                    <Label text="Important" class="sideLabel"></Label>
-                    <Label text="Starred" class="sideLabel"></Label>
-                    <Label text="Sent Mail" class="sideLabel"></Label>
-                    <Label text="Drafts" class="sideLabel"></Label>
-                    <Label text="Close Drawer" color="lightgray" padding="10" (tap)="closeDrawer()"></Label>
-                </StackLayout>
-            </ScrollView>
-        </GridLayout>
-        <StackLayout tkMainContent>
-            <ScrollView>
-                <StackLayout>
-                
-                    <StackLayout orientation="horizontal">
-                        <Label text="Select colors for the players." class="instructions"></Label>
-                    </StackLayout>
-                    
-                    <StackLayout *ngFor="let playerColor of playerColors; let i = index">
-                        <Button [text]="playerColor.name" 
-                            class="btn" 
-                            [ngClass]="{ notSelected: isEnabled(playerColor.name) }"
-                            [color]="playerColor.color"
-                            [backgroundColor]="playerColor.backgroundColor"
-                            (tap)='selectPlayerColor(playerColor)'>
-                        </Button>
-                    </StackLayout>
-                    
-                </StackLayout>
-            </ScrollView>
+    <RadSideDrawer>
+        <StackLayout tkDrawerContent>
+            <mt-side-drawer></mt-side-drawer>
         </StackLayout>
+
+        <ScrollView tkMainContent>
+            <StackLayout>
+                <StackLayout orientation="horizontal">
+                    <Label text="Select colors for the players." class="instructions"></Label>
+                </StackLayout>
+                
+                <StackLayout *ngFor="let playerColor of cacheService.gameProfile.playerColors; let i = index">
+                    <Button [text]="playerColor.name" 
+                        class="btn" 
+                        [ngClass]="{ notSelected: isEnabled(playerColor.name) }"
+                        [color]="playerColor.color"
+                        [backgroundColor]="playerColor.backgroundColor"
+                        (tap)='selectPlayerColor(playerColor)'>
+                    </Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </RadSideDrawer>
 </Page>

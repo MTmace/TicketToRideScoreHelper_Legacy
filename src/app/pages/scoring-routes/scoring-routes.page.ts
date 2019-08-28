@@ -1,9 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef } from "@angular/core";
 import { CacheService } from "../../services/cache.service";
 import { DataService } from "../../services/data.service";
 import { RouteLengthPointsDefinition } from "../../models/route-length-points-definition";
 import { PlayerScoreCard } from "../../models/player-score-card";
 import { TouchGestureEventData } from "tns-core-modules/ui/gestures/gestures";
+import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
+import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 
 @Component({
     selector: "mt-scoring-routes",
@@ -12,14 +14,23 @@ import { TouchGestureEventData } from "tns-core-modules/ui/gestures/gestures";
     styleUrls: ["./scoring-routes.page.css"]
 })
 
-export class ScoringRoutesPage implements OnInit {
+export class ScoringRoutesPage implements AfterViewInit, OnInit {
     // Tap and long press are both triggered with long press. So we need to handle 1 event 'onTouch'
     // then we determine if the touch event is a tap or long press
     start: number;
     end: number;
 
     constructor(private cacheService: CacheService,
-        private dataService: DataService) {
+        private dataService: DataService,
+        private _changeDetectionRef: ChangeDetectorRef) {
+    }
+
+    @ViewChild(RadSideDrawerComponent, { static: false }) public drawerComponent: RadSideDrawerComponent;
+    private drawer: RadSideDrawer;
+    
+    ngAfterViewInit() {
+        this.drawer = this.drawerComponent.sideDrawer;
+        this._changeDetectionRef.detectChanges();
     }
 
     ngOnInit(): void {

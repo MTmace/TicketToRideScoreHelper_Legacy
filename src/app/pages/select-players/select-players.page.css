@@ -25,29 +25,3 @@ button[playerColorAttr='Black']{
     background-color:#000000;
     color: #FFFFFF;
 }
-
-.drawerContentText {
-    font-size: 13;
-    padding: 10;
-}
-
-.drawerContentButton {
-    margin: 10;
-}
-
-.sideStackLayout {
-    background-color: gray;
-}
-
-.sideTitleStackLayout {
-    text-align: center;
-    vertical-align: center;
-}
-
-.sideLabel {
-    padding: 10;
-}
-
-.sideLightGrayLabel {
-    background-color: lightgray;
-}

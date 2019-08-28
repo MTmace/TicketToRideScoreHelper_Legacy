@@ -1,6 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from "@angular/core";
 import { DataService } from "~/app/services/data.service";
 import { CacheService } from "~/app/services/cache.service";
+import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
+import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 
 @Component({
     selector: "mt-scoring-bonus-points",
@@ -12,7 +14,16 @@ import { CacheService } from "~/app/services/cache.service";
 export class ScoringBonusPointsPage implements OnInit {
 
     constructor(private dataService: DataService,
-        private cacheService: CacheService) {
+        private cacheService: CacheService,
+        private _changeDetectionRef: ChangeDetectorRef) {
+    }
+
+    @ViewChild(RadSideDrawerComponent, { static: false }) public drawerComponent: RadSideDrawerComponent;
+    private drawer: RadSideDrawer;
+    
+    ngAfterViewInit() {
+        this.drawer = this.drawerComponent.sideDrawer;
+        this._changeDetectionRef.detectChanges();
     }
 
     ngOnInit(): void {

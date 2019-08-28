@@ -1,0 +1,19 @@
+.sideStackLayout {
+    background-color: rgb(255, 255, 255);
+}
+
+.sideTitleStackLayout {
+    text-align: center;
+    vertical-align: center;
+    background-color: lightgray;
+}
+
+.sideLabel {
+    padding-left:10;
+    padding-bottom:5;
+    padding-top:5;
+}
+
+.selected-game {
+    background-color:red;
+}

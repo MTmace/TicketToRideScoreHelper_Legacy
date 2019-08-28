@@ -65,15 +65,7 @@ export class DataService {
         }
     )
 
-    getPlayerColors(): Array<PlayerColor> {
-        return this.gameProfiles[1].playerColors;
-    }
-
-    getRouteLengthPointsDefinitions(): Array<RouteLengthPointsDefinition> {
-        return this.gameProfiles[1].routeLengthPointsDefinitions;
-    }
-
-    getBonusPointsDefinitions(): Array<BonusPointsDefinition> {
-        return this.gameProfiles[1].bonusPointsDefinitions;
+    getGameProfiles(): Array<GameProfile> {
+        return this.gameProfiles;
     }
 }
