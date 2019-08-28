@@ -15,5 +15,5 @@
 }
 
 .selected-game {
-    background-color:red;
+    background-color: rgba(0, 0, 255, 0.2);
 }
