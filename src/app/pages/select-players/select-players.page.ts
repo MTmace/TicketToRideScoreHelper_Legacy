@@ -13,7 +13,6 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 })
 
 export class SelectPlayersPage implements AfterViewInit, OnInit {
-
     constructor(private dataService: DataService,
         private cacheService: CacheService,
         private _changeDetectionRef: ChangeDetectorRef) { 

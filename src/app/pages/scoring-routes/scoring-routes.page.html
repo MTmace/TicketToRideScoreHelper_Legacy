@@ -2,7 +2,7 @@
 
     <Page.actionBar>
         <ActionBar>
-            <mt-page-action-bar title="Ticket to Ride Scorekeeper" 
+            <mt-page-action-bar title="Ticket to Ride : {{cacheService.gameProfile.name}}"
                 buttonText="Continue"
                 route="/bonus-points"
                 (onNavTapEmitter)="drawer.toggleDrawerState()">

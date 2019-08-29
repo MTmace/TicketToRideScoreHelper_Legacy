@@ -17,17 +17,13 @@ export class InputBonusPointsComponent implements OnInit {
     @Input() playerScoreCard: PlayerScoreCard;
 
     playerBonusPoints: BonusPointsDefinition;
-    initialPoints: number;
+    initialInput: number;
 
     constructor() {
     }
 
     ngOnInit(): void {
         this.playerBonusPoints = this.playerScoreCard.bonusPointsCount.find(bonusPoints => bonusPoints.name === this.bonusPoints.name)
-
-        if (!this.bonusPoints.points) {
-            this.initialPoints = this.playerBonusPoints.points;
-        }
     }
 
     onCheckedChange(args: EventData) {
@@ -42,10 +38,13 @@ export class InputBonusPointsComponent implements OnInit {
 
     public onTextChange(args) {
         let textField = args.object as TextField;
+        let userInput = textField.text ? +textField.text : 0;
 
-        console.log("onTextChange");
-
-        this.playerBonusPoints.points = +textField.text;
+        if (this.playerBonusPoints.bonusPointsBehavior === 'PointsPer') {
+            this.playerBonusPoints.points = userInput * this.bonusPoints.points;
+        } else {
+            this.playerBonusPoints.points = userInput;
+        }
     }
 
 }

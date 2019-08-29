@@ -18,7 +18,6 @@ interface KeyValue<K, V> {
 })
 
 export class OutcomePage implements AfterViewInit, OnInit {
-
     scores: KeyValue<PlayerColorVM, number>[] = [];
 
     constructor(private cacheService: CacheService,

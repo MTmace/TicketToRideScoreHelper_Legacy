@@ -12,7 +12,6 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 })
 
 export class ScoringBonusPointsPage implements OnInit {
-
     constructor(private dataService: DataService,
         private cacheService: CacheService,
         private _changeDetectionRef: ChangeDetectorRef) {
