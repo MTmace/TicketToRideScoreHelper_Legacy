@@ -4,6 +4,9 @@ import { CacheService } from "~/app/services/cache.service";
 import { GameProfile } from "~/app/models/game-profile";
 import { Router } from "@angular/router";
 import { confirm } from "tns-core-modules/ui/dialogs";
+import { ExpansionDefinition } from "~/app/models/expansion-definition";
+import { EventData } from "tns-core-modules/ui/page/page";
+import { Switch } from "tns-core-modules/ui/switch/switch";
 
 @Component({
     selector: "mt-side-drawer",
@@ -53,5 +56,20 @@ export class SideDrawerComponent {
         this.cacheService.changeGame(this.selectedGame);
         this.selectedGame = null;
         this.router.navigate(["/"]);
+    }
+
+    onCheckedChange(args: EventData, gameProfile: GameProfile, expansionDefinition: ExpansionDefinition) {
+        let mySwitch = args.object as Switch;
+        
+        // Check to see if the expansion is already added to the selected Game Profile
+        var foundBonusPointsDefinition = this.cacheService.gameProfile.bonusPointsDefinitions.find(item => item.name === expansionDefinition.bonusPointsDefinitions[0].name);
+
+        if (foundBonusPointsDefinition && !mySwitch.checked) {
+            // Expansion found and needs to be removed
+            this.cacheService.gameProfile.bonusPointsDefinitions = this.cacheService.gameProfile.bonusPointsDefinitions.filter(obj => obj !== foundBonusPointsDefinition);
+        } else if (!foundBonusPointsDefinition && mySwitch.checked) {
+            expansionDefinition.bonusPointsDefinitions.forEach(bpd => this.cacheService.gameProfile.bonusPointsDefinitions.push(bpd));
+        }
+
     }
 }

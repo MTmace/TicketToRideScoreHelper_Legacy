@@ -24,6 +24,14 @@ export class InputBonusPointsComponent implements OnInit {
 
     ngOnInit(): void {
         this.playerBonusPoints = this.playerScoreCard.bonusPointsCount.find(bonusPoints => bonusPoints.name === this.bonusPoints.name)
+
+        if (this.playerBonusPoints.points > 0) {
+            if (this.playerBonusPoints.bonusPointsBehavior === 'PointsPer') {
+                this.initialInput = this.playerBonusPoints.points / this.bonusPoints.points;
+            } else {
+                this.initialInput = this.playerBonusPoints.points;
+            }
+        }
     }
 
     onCheckedChange(args: EventData) {

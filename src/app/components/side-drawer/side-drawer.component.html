@@ -6,10 +6,19 @@
         <StackLayout class="sideStackLayout">
             <StackLayout *ngFor="let gameProfile of dataService.getGameProfiles(); let i = index" [ngClass]="{'selected-game': gameProfile.name === cacheService.gameProfile.name}">
                 <Label [text]="gameProfile.name" class="sideLabel" (tap)="selectGame(gameProfile)"></Label>
-                <!-- <StackLayout orientation="horizontal" horizontalAlignment="right" *ngIf="gameProfile.name === cacheService.gameProfile.name">
-                    <Button class="btn" text="edit"></Button>
-                    <Button class="btn" text="play"></Button>
-                </StackLayout> -->
+
+                <StackLayout *ngIf="gameProfile.name === cacheService.gameProfile.name">
+                    <GridLayout columns="auto, 50" horizontalAlignment="right" *ngFor="let expansionDefinition of gameProfile.expansionDefinitions; let i = index">                    
+                        <Label row="0" col="0" [text]="expansionDefinition.name"></Label>
+                        <Switch row="0" col="1"
+                            checked="false"
+                            backgroundColor="green" 
+                            offBackgroundColor="red"
+                            (checkedChange)="onCheckedChange($event, gameProfile, expansionDefinition)">
+                        </Switch>
+                    </GridLayout>
+                </StackLayout>
+
             </StackLayout>
         </StackLayout>
     </ScrollView>
