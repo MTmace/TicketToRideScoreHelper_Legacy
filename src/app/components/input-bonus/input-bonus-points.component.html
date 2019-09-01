@@ -5,9 +5,10 @@
         *ngIf="bonusPoints.bonusPointsBehavior === 'Boolean'"
         checked="false"
         [color]="playerScoreCard.playerColor.backgroundColor"
-        backgroundColor="green" 
+        backgroundColor="green"
         offBackgroundColor="red"
-        (checkedChange)="onCheckedChange($event)">
+        (checkedChange)="onCheckedChange($event)"
+        (tap)="$event.select()">
     </Switch>
     <TextField row="0"
         col="1"

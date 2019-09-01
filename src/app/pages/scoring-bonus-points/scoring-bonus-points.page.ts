@@ -13,13 +13,13 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 
 export class ScoringBonusPointsPage implements OnInit {
     constructor(private dataService: DataService,
-        private cacheService: CacheService,
+        public cacheService: CacheService,
         private _changeDetectionRef: ChangeDetectorRef) {
     }
 
     @ViewChild(RadSideDrawerComponent, { static: false }) public drawerComponent: RadSideDrawerComponent;
-    private drawer: RadSideDrawer;
-    
+    public drawer: RadSideDrawer;
+
     ngAfterViewInit() {
         this.drawer = this.drawerComponent.sideDrawer;
         this._changeDetectionRef.detectChanges();

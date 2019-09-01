@@ -20,14 +20,14 @@ export class ScoringRoutesPage implements AfterViewInit, OnInit {
     start: number;
     end: number;
 
-    constructor(private cacheService: CacheService,
-        private dataService: DataService,
+    constructor(public cacheService: CacheService,
+        public dataService: DataService,
         private _changeDetectionRef: ChangeDetectorRef) {
     }
 
     @ViewChild(RadSideDrawerComponent, { static: false }) public drawerComponent: RadSideDrawerComponent;
-    private drawer: RadSideDrawer;
-    
+    public drawer: RadSideDrawer;
+
     ngAfterViewInit() {
         this.drawer = this.drawerComponent.sideDrawer;
         this._changeDetectionRef.detectChanges();

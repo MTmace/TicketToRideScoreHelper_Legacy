@@ -19,8 +19,8 @@ export class SideDrawerComponent {
 
     selectedGame: GameProfile;
 
-    constructor(private dataService: DataService,
-        private cacheService: CacheService,
+    constructor(public dataService: DataService,
+        public cacheService: CacheService,
         private router: Router) {
     }
 
@@ -60,7 +60,7 @@ export class SideDrawerComponent {
 
     onCheckedChange(args: EventData, gameProfile: GameProfile, expansionDefinition: ExpansionDefinition) {
         let mySwitch = args.object as Switch;
-        
+
         // Check to see if the expansion is already added to the selected Game Profile
         var foundBonusPointsDefinition = this.cacheService.gameProfile.bonusPointsDefinitions.find(item => item.name === expansionDefinition.bonusPointsDefinitions[0].name);
 

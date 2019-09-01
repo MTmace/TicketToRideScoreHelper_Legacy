@@ -2,7 +2,7 @@
 
     <Page.actionBar>
         <mt-page-action-bar title="Ticket to Ride : {{cacheService.gameProfile.name}}"
-            buttonText="Continue"
+            buttonText="Next"
             route="/scoring-routes"
             [isEnabled]="cacheService.playerScoreCards.length > 1"
             (onNavTapEmitter)="drawer.toggleDrawerState()">
@@ -19,10 +19,10 @@
                 <StackLayout orientation="horizontal">
                     <Label text="Select colors for the players." class="instructions"></Label>
                 </StackLayout>
-                
+
                 <StackLayout *ngFor="let playerColor of cacheService.gameProfile.playerColors; let i = index">
-                    <Button [text]="playerColor.name" 
-                        class="btn" 
+                    <Button [text]="playerColor.name"
+                        class="btn"
                         [ngClass]="{ notSelected: isEnabled(playerColor.name) }"
                         [color]="playerColor.color"
                         [backgroundColor]="playerColor.backgroundColor"

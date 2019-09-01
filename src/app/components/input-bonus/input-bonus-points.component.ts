@@ -36,10 +36,10 @@ export class InputBonusPointsComponent implements OnInit {
 
     onCheckedChange(args: EventData) {
         let mySwitch = args.object as Switch;
-        
+
         if (mySwitch.checked) {
             this.playerBonusPoints.points = this.bonusPoints.points;
-        } else { 
+        } else {
             this.playerBonusPoints.points = 0;
         }
     }

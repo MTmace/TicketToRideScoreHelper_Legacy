@@ -1,0 +1,13 @@
+generate icons tool
+http://images.nativescript.rocks/
+
+icon sizes
+https://iconhandbook.co.uk/reference/chart/android/
+
+1. Menu Icon for different size devices - DONE
+2. Right align action bar button - DONE
+3. Application icon
+4. Splash screen
+5. Make service observable
+6. Dont allow decimal
+7. Highlight number when entering cell
