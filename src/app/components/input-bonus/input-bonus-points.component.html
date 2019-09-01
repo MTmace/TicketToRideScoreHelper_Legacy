@@ -2,18 +2,19 @@
     <Label row="0" col="0" [text]="bonusPoints.name" verticalAlignment="middle" paddingLeft="20px"></Label>
     <Switch row="0"
         col="1"
-        *ngIf="bonusPoints.points"
+        *ngIf="bonusPoints.bonusPointsBehavior === 'Boolean'"
         checked="false"
         [color]="playerScoreCard.playerColor.backgroundColor"
-        backgroundColor="green" 
+        backgroundColor="green"
         offBackgroundColor="red"
-        (checkedChange)="onCheckedChange($event)">
+        (checkedChange)="onCheckedChange($event)"
+        (tap)="$event.select()">
     </Switch>
     <TextField row="0"
         col="1"
         width="70"
-        *ngIf="!bonusPoints.points"
-        [text]="initialPoints"
+        *ngIf="bonusPoints.bonusPointsBehavior != 'Boolean'"
+        [text]="initialInput"
         (textChange)="onTextChange($event)"
         class="input input-border"
         keyboardType="number"

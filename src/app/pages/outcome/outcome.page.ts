@@ -18,17 +18,16 @@ interface KeyValue<K, V> {
 })
 
 export class OutcomePage implements AfterViewInit, OnInit {
-
     scores: KeyValue<PlayerColorVM, number>[] = [];
 
-    constructor(private cacheService: CacheService,
+    constructor(public cacheService: CacheService,
         private router: Router,
         private _changeDetectionRef: ChangeDetectorRef) {
     }
 
     @ViewChild(RadSideDrawerComponent, { static: false }) public drawerComponent: RadSideDrawerComponent;
-    private drawer: RadSideDrawer;
-    
+    public drawer: RadSideDrawer;
+
     ngAfterViewInit() {
         this.drawer = this.drawerComponent.sideDrawer;
         this._changeDetectionRef.detectChanges();

@@ -52,8 +52,10 @@ export class CacheService {
             playerScoreCard.bonusPointsCount.push({
                 name: bonusPoint.name,
                 points: 0,
-                description: bonusPoint.description})
-            });
+                bonusPointsBehavior: bonusPoint.bonusPointsBehavior,
+                description: bonusPoint.description
+            })
+        });
 
         this.playerScoreCards.push(playerScoreCard);
 

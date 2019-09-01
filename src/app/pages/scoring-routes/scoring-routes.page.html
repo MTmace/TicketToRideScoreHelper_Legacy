@@ -2,8 +2,8 @@
 
     <Page.actionBar>
         <ActionBar>
-            <mt-page-action-bar title="Ticket to Ride Scorekeeper" 
-                buttonText="Continue"
+            <mt-page-action-bar title="Ticket to Ride : {{cacheService.gameProfile.name}}"
+                buttonText="Next"
                 route="/bonus-points"
                 (onNavTapEmitter)="drawer.toggleDrawerState()">
             </mt-page-action-bar>
@@ -19,32 +19,32 @@
             <StackLayout>
                 <Label text="Long press (hold down the button) to subtract a route." class="instructions"></Label>
 
-                <GridLayout *ngFor="let routeLengthPoints of cacheService.gameProfile.routeLengthPointsDefinitions; let i = index" rows="auto" columns="*" class="route-length-points"> 
+                <GridLayout *ngFor="let routeLengthPoints of cacheService.gameProfile.routeLengthPointsDefinitions; let i = index" rows="auto" columns="*" class="route-length-points">
                     <StackLayout orientation="horizontal">
                         <Label column="0" [text]="routeLengthPoints.length"></Label>
 
-                        <GridLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards; let i = index" rows="70" columns="70"> 
+                        <GridLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards; let i = index" rows="70" columns="70">
                             <StackLayout>
-                                <Button class="btn route-length-points-button" 
-                                    row="0" 
+                                <Button class="btn route-length-points-button"
+                                    row="0"
                                     [text]="getRouteLengthPoints(routeLengthPoints, playerScoreCard)"
-                                    [backgroundColor]="playerScoreCard.playerColor.backgroundColor" 
+                                    [backgroundColor]="playerScoreCard.playerColor.backgroundColor"
                                     [color]="playerScoreCard.playerColor.color"
                                     (touch)="onTouch($event, routeLengthPoints, playerScoreCard)">
                                 </Button>
                             </StackLayout>
                         </GridLayout>
-                            
+
                     </StackLayout>
-                </GridLayout> 
+                </GridLayout>
 
                 <StackLayout orientation="horizontal" backgroundColor="silver" class="scoring-total">
                     <Label *ngFor="let playerScoreCard of cacheService.playerScoreCards; let i = index"
                         [text]="cacheService.getRouteCountScore(playerScoreCard)"
                         [color]="playerScoreCard.playerColor.backgroundColor"></Label>
-                </StackLayout> 
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </RadSideDrawer>
-    
+
 </Page>

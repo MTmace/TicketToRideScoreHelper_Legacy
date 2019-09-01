@@ -13,15 +13,14 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 })
 
 export class SelectPlayersPage implements AfterViewInit, OnInit {
-
     constructor(private dataService: DataService,
-        private cacheService: CacheService,
-        private _changeDetectionRef: ChangeDetectorRef) { 
+        public cacheService: CacheService,
+        private _changeDetectionRef: ChangeDetectorRef) {
     }
 
     @ViewChild(RadSideDrawerComponent, { static: false }) public drawerComponent: RadSideDrawerComponent;
-    private drawer: RadSideDrawer;
-    
+    public drawer: RadSideDrawer;
+
     ngAfterViewInit() {
         this.drawer = this.drawerComponent.sideDrawer;
         this._changeDetectionRef.detectChanges();
