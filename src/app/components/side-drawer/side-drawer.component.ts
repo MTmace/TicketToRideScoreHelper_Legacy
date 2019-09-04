@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { DataService } from "~/app/services/data.service";
 import { CacheService } from "~/app/services/cache.service";
 import { GameProfile } from "~/app/models/game-profile";
@@ -61,15 +61,28 @@ export class SideDrawerComponent {
     onCheckedChange(args: EventData, gameProfile: GameProfile, expansionDefinition: ExpansionDefinition) {
         let mySwitch = args.object as Switch;
 
-        // Check to see if the expansion is already added to the selected Game Profile
+        // Check to see if the expansion is already added to the selected Game Profilellll
         var foundBonusPointsDefinition = this.cacheService.gameProfile.bonusPointsDefinitions.find(item => item.name === expansionDefinition.bonusPointsDefinitions[0].name);
 
         if (foundBonusPointsDefinition && !mySwitch.checked) {
             // Expansion found and needs to be removed
             this.cacheService.gameProfile.bonusPointsDefinitions = this.cacheService.gameProfile.bonusPointsDefinitions.filter(obj => obj !== foundBonusPointsDefinition);
-        } else if (!foundBonusPointsDefinition && mySwitch.checked) {
-            expansionDefinition.bonusPointsDefinitions.forEach(bpd => this.cacheService.gameProfile.bonusPointsDefinitions.push(bpd));
-        }
+            this.cacheService.playerScoreCards.forEach(playingCard => {
+                playingCard.bonusPointsCount.filter(obj => obj != foundBonusPointsDefinition);
+            });
 
+        } else if (!foundBonusPointsDefinition && mySwitch.checked) {
+            expansionDefinition.bonusPointsDefinitions.forEach(bpd => {
+                this.cacheService.gameProfile.bonusPointsDefinitions.push(bpd);
+
+                this.cacheService.playerScoreCards.forEach(playingCard => {
+                    playingCard.bonusPointsCount.push(bpd);
+                });
+            });
+        }
+    }
+
+    public expansionSelected(expansionDefinition: ExpansionDefinition) : boolean {
+        return this.cacheService.gameProfile.bonusPointsDefinitions.some(i => i.name === expansionDefinition.bonusPointsDefinitions[0].name);
     }
 }

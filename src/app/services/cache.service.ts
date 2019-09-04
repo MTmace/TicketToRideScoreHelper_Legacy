@@ -10,7 +10,7 @@ import { PlayerColor } from "../models/player-color";
 export class CacheService {
 
     gameProfile: GameProfile;
-    
+
     playerScoreCards: Array<PlayerScoreCard> = [];
 
     public getRouteCountScore(playerScoreCard: PlayerScoreCard): number {

@@ -8,11 +8,11 @@
                 <Label [text]="gameProfile.name" class="sideLabel" (tap)="selectGame(gameProfile)"></Label>
 
                 <StackLayout *ngIf="gameProfile.name === cacheService.gameProfile.name">
-                    <GridLayout columns="auto, 50" horizontalAlignment="right" *ngFor="let expansionDefinition of gameProfile.expansionDefinitions; let i = index">                    
+                    <GridLayout columns="auto, 50" horizontalAlignment="right" *ngFor="let expansionDefinition of gameProfile.expansionDefinitions; let i = index">
                         <Label row="0" col="0" [text]="expansionDefinition.name"></Label>
                         <Switch row="0" col="1"
-                            checked="false"
-                            backgroundColor="green" 
+                            [checked]="expansionSelected(expansionDefinition)"
+                            backgroundColor="green"
                             offBackgroundColor="red"
                             (checkedChange)="onCheckedChange($event, gameProfile, expansionDefinition)">
                         </Switch>
