@@ -1,6 +1,6 @@
 {
   "nativescript": {
-    "id": "com.mtmace.tickettoridescorehelper",
+    "id": "com.mtmace.tickettoridescoreHelper",
     "tns-android": {
       "version": "6.0.0"
     },
@@ -10,7 +10,7 @@
   },
   "description": "NativeScript Application",
   "license": "",
-  "repository": "https://github.com/MTmace/TicketToRideScorehelper",
+  "repository": "https://github.com/MTmace/TicketToRideScoreHelper",
   "dependencies": {
     "@angular/animations": "~8.0.0",
     "@angular/common": "~8.0.0",
