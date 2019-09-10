@@ -9,14 +9,14 @@ import * as application from "tns-core-modules/application";
 })
 
 export class PageActionBarComponent implements OnInit {
-    @Input() title: string = 'Ticket to Ride Scorekeeper';
+    @Input() title: string = 'Ticket to Ride Score Helper';
     @Input() buttonText: string = 'Continue';
     @Input() route: string = '';
     @Input() isEnabled = true;
 
     @Output() onTapEmitter = new EventEmitter();
     @Output() onNavTapEmitter = new EventEmitter();
-    
+
     isNavVisible = false;
     isItemVisible = false;
 

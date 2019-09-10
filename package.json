@@ -1,6 +1,6 @@
 {
   "nativescript": {
-    "id": "org.nativescript.tickettoridescorekeeper",
+    "id": "com.mtmace.tickettoridescorehelper",
     "tns-android": {
       "version": "6.0.0"
     },
