@@ -1,0 +1,16 @@
+generate icons tool
+http://images.nativescript.rocks/
+
+icon sizes
+https://iconhandbook.co.uk/reference/chart/android/
+
+screenshots
+https://www.davinciapps.com/
+
+1. Save selected game profile when application closes
+2. Convert services to observable
+3. Dont allow decimal
+4. Highlight number when entering cell
+5. Use grid to display computed scores
+6. Allow for custom/editable games
+7. Save custom games
