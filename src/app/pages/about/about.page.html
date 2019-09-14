@@ -1,0 +1,35 @@
+<Page>
+    <Page.actionBar>
+        <ActionBar>
+            <mt-page-action-bar title="Ticket to Ride : About"
+                buttonText="New Game"
+                route="About"
+                (onTapEmitter)="newGame()"
+                (onNavTapEmitter)="drawer.toggleDrawerState()">
+            </mt-page-action-bar>
+        </ActionBar>
+    </Page.actionBar>
+
+    <RadSideDrawer>
+        <StackLayout tkDrawerContent>
+            <mt-side-drawer></mt-side-drawer>
+        </StackLayout>
+
+        <ng-template let-gameProfile="item" let-i="index" let-odd="odd" let-even="even">
+
+        </ng-template>
+        <ScrollView tkMainContent>
+            <ListView [items]="gameProfiles" class="list-group" [itemTemplateSelector]="templateSelector" row="0" class="list-group">
+
+                <ng-template nsTemplateKey="even" let-gameProfile="item" let-i="index" let-odd="odd" let-even="even">
+                    <mt-game-profile-definition [gameProfile]="gameProfile" [isEven]="true"></mt-game-profile-definition>
+                </ng-template>
+
+                <ng-template nsTemplateKey="odd" let-gameProfile="item" let-i="index" let-odd="odd" let-even="even">
+                    <mt-game-profile-definition [gameProfile]="gameProfile" [isEven]="false"></mt-game-profile-definition>
+                </ng-template>
+
+            </ListView>
+        </ScrollView>
+    </RadSideDrawer>
+</Page>

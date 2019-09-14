@@ -11,6 +11,8 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 // app
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { AboutPage } from "./pages/about/about.page";
+import { GameProfileDefinitionComponent } from "./components/game-profile-definition/game-profile-definition.component";
 import { OutcomePage } from "./pages/outcome/outcome.page";
 import { ScoringRoutesPage } from "./pages/scoring-routes/scoring-routes.page";
 import { ScoringBonusPointsPage } from "./pages/scoring-bonus-points/scoring-bonus-points.page";
@@ -38,12 +40,14 @@ import { SideDrawerComponent } from "./components/side-drawer/side-drawer.compon
     declarations: [
         AppComponent,
 // PAGE
+        AboutPage,
         OutcomePage,
         ScoringBonusPointsPage,
         ScoringRoutesPage,
         SelectPlayersPage,
 
 // COMPONENTS
+        GameProfileDefinitionComponent,
         InputBonusPointsComponent,
         PageActionBarComponent,
         SideDrawerComponent

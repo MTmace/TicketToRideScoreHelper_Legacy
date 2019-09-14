@@ -1,0 +1,35 @@
+<StackLayout class="list-group-item" [ngClass]="{'odd': !isEven}">
+    <Label [text]="gameProfile.name" class="h2"></Label>
+    <Label [text]="gameProfile.description"></Label>
+    <StackLayout orientation="horizontal">
+        <Label text="# of players: "></Label> <Label text="2 - {{gameProfile.playerColors.length}}"></Label>
+    </StackLayout>
+    <Label text="Route Points" paddingTop="10"></Label>
+    <GridLayout columns="*, *, *">
+        <Label row="0" col="0" text="Length"></Label>
+        <Label row="0" col="1" text="Points"></Label>
+        <Label row="0" col="2" text="Limit"></Label>
+    </GridLayout>
+    <GridLayout columns="*, *, *" *ngFor="let routeLength of gameProfile.routeLengthPointsDefinitions; let i = index">
+        <Label row="0" col="0" [text]="routeLength.length"></Label>
+        <Label row="0" col="1" [text]="routeLength.points"></Label>
+        <Label row="0" col="2" [text]="!routeLength.limit ? 'n/a' : routeLength.limit"></Label>
+    </GridLayout>
+
+    <Label text="Bonus Points" paddingTop="10"></Label>
+    <GridLayout columns="*, *" *ngFor="let bonusPointsDefinition of gameProfile.bonusPointsDefinitions; let i = index">
+        <Label row="0" col="0" [text]="bonusPointsDefinition.name"></Label>
+        <Label row="0" col="1" [text]="!bonusPointsDefinition.points ? 'manual' : bonusPointsDefinition.points"></Label>
+    </GridLayout>
+
+    <StackLayout *ngIf="gameProfile.expansionDefinitions">
+        <StackLayout *ngFor="let expansionDefinition of gameProfile.expansionDefinitions; let i = index" paddingTop="10">
+            <Label [text]="expansionDefinition.name" paddingTop="10"></Label>
+            <GridLayout columns="*, *" *ngFor="let bonusPointsDefinitions of expansionDefinition.bonusPointsDefinitions; let i = index">
+                <Label row="0" col="0" [text]="bonusPointsDefinitions.name"></Label>
+                <Label row="0" col="1" [text]="bonusPointsDefinitions.points"></Label>
+            </GridLayout>
+        </StackLayout>
+    </StackLayout>
+
+</StackLayout>

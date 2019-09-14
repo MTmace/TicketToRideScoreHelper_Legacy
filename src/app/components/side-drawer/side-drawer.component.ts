@@ -7,6 +7,7 @@ import { confirm } from "tns-core-modules/ui/dialogs";
 import { ExpansionDefinition } from "~/app/models/expansion-definition";
 import { EventData } from "tns-core-modules/ui/page/page";
 import { Switch } from "tns-core-modules/ui/switch/switch";
+import { RouterExtensions } from "nativescript-angular/router";
 
 @Component({
     selector: "mt-side-drawer",
@@ -21,7 +22,8 @@ export class SideDrawerComponent {
 
     constructor(public dataService: DataService,
         public cacheService: CacheService,
-        private router: Router) {
+        private router: Router,
+        private _routerExtensions: RouterExtensions) {
     }
 
     selectGame(selectedGame: GameProfile) {
@@ -84,5 +86,9 @@ export class SideDrawerComponent {
 
     public expansionSelected(expansionDefinition: ExpansionDefinition) : boolean {
         return this.cacheService.gameProfile.bonusPointsDefinitions.some(i => i.name === expansionDefinition.bonusPointsDefinitions[0].name);
+    }
+
+    public navigateToAbout() {
+        this._routerExtensions.navigate(["/about"]);
     }
 }
