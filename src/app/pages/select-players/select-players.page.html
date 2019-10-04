@@ -26,7 +26,8 @@
                         [ngClass]="{ notSelected: isEnabled(playerColor.name) }"
                         [color]="playerColor.color"
                         [backgroundColor]="playerColor.backgroundColor"
-                        (tap)='selectPlayerColor(playerColor)'>
+                        (tap)='selectPlayerColor(playerColor)'
+                        [automationText]="playerColor.name">
                     </Button>
                 </StackLayout>
             </StackLayout>

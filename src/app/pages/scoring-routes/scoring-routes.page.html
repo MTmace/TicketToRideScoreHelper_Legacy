@@ -30,7 +30,8 @@
                                     [text]="getRouteLengthPoints(routeLengthPoints, playerScoreCard)"
                                     [backgroundColor]="playerScoreCard.playerColor.backgroundColor"
                                     [color]="playerScoreCard.playerColor.color"
-                                    (touch)="onTouch($event, routeLengthPoints, playerScoreCard)">
+                                    (touch)="onTouch($event, routeLengthPoints, playerScoreCard)"
+                                    automationText="{{playerScoreCard.playerColor.name}} {{routeLengthPoints.length}}">
                                 </Button>
                             </StackLayout>
                         </GridLayout>
@@ -41,7 +42,8 @@
                 <StackLayout orientation="horizontal" backgroundColor="silver" class="scoring-total">
                     <Label *ngFor="let playerScoreCard of cacheService.playerScoreCards; let i = index"
                         [text]="cacheService.getRouteCountScore(playerScoreCard)"
-                        [color]="playerScoreCard.playerColor.backgroundColor"></Label>
+                        [color]="playerScoreCard.playerColor.backgroundColor"
+                        automationText="{{playerScoreCard.playerColor.name}} total"></Label>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

@@ -11,11 +11,11 @@
 
 android {
   defaultConfig {
-    minSdkVersion 17
+    minSdkVersion 18
     generatedDensities = []
-  }
-  aaptOptions {
-    additionalParameters "--no-version-vectors"
+    ndk {
+      abiFilters.clear()
+    }
   }
 }
 
