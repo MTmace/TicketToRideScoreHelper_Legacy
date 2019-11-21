@@ -7,6 +7,11 @@ https://iconhandbook.co.uk/reference/chart/android/
 screenshots
 https://www.davinciapps.com/
 
+release splits
+https://docs.nativescript.org/tooling/publishing/android-abi-split#abi-split-with-snapshots
+https://proandroiddev.com/reducing-apk-size-by-using-abi-filters-and-apk-split-74a68a885f4e
+
+
 1. Save selected game profile when application closes
 2. Convert services to observable
 3. Dont allow decimal
@@ -14,3 +19,10 @@ https://www.davinciapps.com/
 5. Use grid to display computed scores
 6. Allow for custom/editable games
 7. Save custom games
+
+
+x64
+rm -rf platforms
+npm i --save-dev nativescript-dev-webpack@rc
+tns platform add android@rc
+tns build android --release --env.snapshot...

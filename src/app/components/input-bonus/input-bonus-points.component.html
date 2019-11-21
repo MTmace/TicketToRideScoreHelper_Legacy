@@ -7,7 +7,8 @@
         [color]="playerScoreCard.playerColor.backgroundColor"
         backgroundColor="green"
         offBackgroundColor="red"
-        (checkedChange)="onCheckedChange($event)">
+        (checkedChange)="onCheckedChange($event)"
+        automationText="{{playerScoreCard.playerColor.name}} {{bonusPoints.name}}">
     </Switch>
     <TextField row="0"
         col="1"
