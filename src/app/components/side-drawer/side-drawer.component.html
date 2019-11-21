@@ -8,19 +8,19 @@
                 <Label [text]="gameProfile.name" class="sideLabel" (tap)="selectGame(gameProfile)"></Label>
 
                 <StackLayout *ngIf="gameProfile.name === cacheService.gameProfile.name">
-                    <GridLayout columns="auto, 50" horizontalAlignment="right" *ngFor="let expansionDefinition of gameProfile.expansionDefinitions; let i = index">
-                        <Label row="0" col="0" [text]="expansionDefinition.name"></Label>
-                        <Switch row="0" col="1"
-                            [checked]="expansionSelected(expansionDefinition)"
-                            backgroundColor="green"
-                            offBackgroundColor="red"
-                            (checkedChange)="onCheckedChange($event, gameProfile, expansionDefinition)">
-                        </Switch>
+                    <GridLayout columns="auto, 50" rows="auto" horizontalAlignment="right" *ngFor="let expansionDefinition of gameProfile.expansionDefinitions; let i = index">
+                        <Label row="0" col="0" [text]="expansionDefinition.name" style="padding-top: 30px"></Label>
+                        <Button row="0" col="1"
+                            [text]="expansionSelected(expansionDefinition)"
+                            (tap)="onCheckedChange($event, gameProfile, expansionDefinition)"
+                            class="btn btn-outline expansion-button"
+                            [ngClass]="{'add': expansionSelected(expansionDefinition) === '+', 'remove': expansionSelected(expansionDefinition) === '-'}">
+                        </Button>
                     </GridLayout>
                 </StackLayout>
 
             </StackLayout>
-            <StackLayout class="hr-light m-10"></StackLayout>
+            <StackLayout class="hr-light m-10" automationText="menu separator"></StackLayout>
             <label class="sideLabel" text="About" (tap)="navigateToAbout()"></label>
         </StackLayout>
     </ScrollView>

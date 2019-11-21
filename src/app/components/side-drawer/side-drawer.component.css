@@ -17,3 +17,20 @@
 .selected-game {
     background-color: rgba(0, 0, 255, 0.2);
 }
+
+.expansion-button {
+    width:30;
+    height:30;
+}
+.expansion-button.add {
+    background-color: rgba(0, 128, 0, .2);
+    color: rgb(0, 128, 0);
+    border-color:rgb(0, 128, 0);
+}
+
+.expansion-button.remove {
+
+    background-color: rgba(255, 0, 0, .2);
+    color: rgb(255, 0, 0);
+    border-color:rgb(255, 0, 0);
+}

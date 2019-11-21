@@ -6,7 +6,7 @@ import { Router } from "@angular/router";
 import { confirm } from "tns-core-modules/ui/dialogs";
 import { ExpansionDefinition } from "~/app/models/expansion-definition";
 import { EventData } from "tns-core-modules/ui/page/page";
-import { Switch } from "tns-core-modules/ui/switch/switch";
+import { Button } from "tns-core-modules/ui/button/button";
 import { RouterExtensions } from "nativescript-angular/router";
 
 @Component({
@@ -41,8 +41,8 @@ export class SideDrawerComponent {
         // >> confirm-dialog-code
         let options = {
             title: "Game in Progress",
-            message: "You have a game in progress, gaming the type of game will erase the current one.",
-            okButtonText: "OK",
+            message: "You have a game in progress, would you like to start a new game?",
+            okButtonText: "YES",
             cancelButtonText: "Cancel",
         };
 
@@ -61,19 +61,20 @@ export class SideDrawerComponent {
     }
 
     onCheckedChange(args: EventData, gameProfile: GameProfile, expansionDefinition: ExpansionDefinition) {
-        let mySwitch = args.object as Switch;
 
-        // Check to see if the expansion is already added to the selected Game Profilellll
+        let myButton = args.object as Button;
+
+        // Check to see if the expansion is already added to the selected Game Profile
         var foundBonusPointsDefinition = this.cacheService.gameProfile.bonusPointsDefinitions.find(item => item.name === expansionDefinition.bonusPointsDefinitions[0].name);
 
-        if (foundBonusPointsDefinition && !mySwitch.checked) {
+        if (foundBonusPointsDefinition && myButton.text === '-') {
             // Expansion found and needs to be removed
             this.cacheService.gameProfile.bonusPointsDefinitions = this.cacheService.gameProfile.bonusPointsDefinitions.filter(obj => obj !== foundBonusPointsDefinition);
             this.cacheService.playerScoreCards.forEach(playingCard => {
                 playingCard.bonusPointsCount.filter(obj => obj != foundBonusPointsDefinition);
             });
 
-        } else if (!foundBonusPointsDefinition && mySwitch.checked) {
+        } else if (!foundBonusPointsDefinition && myButton.text === '+') {
             expansionDefinition.bonusPointsDefinitions.forEach(bpd => {
                 this.cacheService.gameProfile.bonusPointsDefinitions.push(bpd);
 
@@ -82,10 +83,12 @@ export class SideDrawerComponent {
                 });
             });
         }
+
     }
 
-    public expansionSelected(expansionDefinition: ExpansionDefinition) : boolean {
-        return this.cacheService.gameProfile.bonusPointsDefinitions.some(i => i.name === expansionDefinition.bonusPointsDefinitions[0].name);
+    public expansionSelected(expansionDefinition: ExpansionDefinition) : string {
+        const expansionSelected = this.cacheService.gameProfile.bonusPointsDefinitions.some(i => i.name === expansionDefinition.bonusPointsDefinitions[0].name);
+        return expansionSelected ? '-' : '+';
     }
 
     public navigateToAbout() {
