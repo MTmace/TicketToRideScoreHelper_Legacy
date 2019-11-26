@@ -15,9 +15,9 @@ import { GameProfile } from "~/app/models/game-profile";
 
 export class AboutPage implements AfterViewInit, OnInit {
 
-    public gameProfiles: Array<GameProfile>
+    //public gameProfiles: Array<GameProfile>
 
-    constructor(private dataService: DataService,
+    constructor(public dataService: DataService,
         private cacheService: CacheService,
         private router: Router,
         private _changeDetectionRef: ChangeDetectorRef) {
@@ -32,7 +32,7 @@ export class AboutPage implements AfterViewInit, OnInit {
     }
 
     ngOnInit(): void {
-        this.gameProfiles = this.dataService.getGameProfiles();
+        //this.gameProfiles = this.dataService.getGameProfiles();
     }
 
     newGame() {

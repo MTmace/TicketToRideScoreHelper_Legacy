@@ -4,7 +4,7 @@
     </StackLayout>
     <ScrollView row="1">
         <StackLayout class="sideStackLayout">
-            <StackLayout *ngFor="let gameProfile of dataService.getGameProfiles(); let i = index" [ngClass]="{'selected-game': gameProfile.name === cacheService.gameProfile.name}">
+            <StackLayout *ngFor="let gameProfile of dataService.gameProfiles | async; let i = index" [ngClass]="{'selected-game': gameProfile.name === cacheService.gameProfile.name}">
                 <Label [text]="gameProfile.name" class="sideLabel" (tap)="selectGame(gameProfile)"></Label>
 
                 <StackLayout *ngIf="gameProfile.name === cacheService.gameProfile.name">

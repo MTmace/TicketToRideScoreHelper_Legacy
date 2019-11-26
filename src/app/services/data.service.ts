@@ -4,6 +4,7 @@ import { RouteLengthPointsDefinition } from "../models/route-length-points-defin
 import { BonusPointsDefinition } from "../models/bonus-points-definition";
 import { GameProfile } from "../models/game-profile";
 import { ExpansionDefinition } from "../models/expansion-definition";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({
     providedIn: "root"
@@ -11,7 +12,7 @@ import { ExpansionDefinition } from "../models/expansion-definition";
 
 export class DataService {
 
-    private gameProfiles = new Array<GameProfile>(
+    private gameProfileData = new Array<GameProfile>(
         {
             name: "USA",
             playerColors: new Array<PlayerColor>(
@@ -166,7 +167,6 @@ export class DataService {
         }
     )
 
-    getGameProfiles(): Array<GameProfile> {
-        return this.gameProfiles;
-    }
+    private gameProfiles$: BehaviorSubject<Array<GameProfile>> = new BehaviorSubject(this.gameProfileData);
+    public readonly gameProfiles: Observable<Array<GameProfile>> = this.gameProfiles$.asObservable();
 }

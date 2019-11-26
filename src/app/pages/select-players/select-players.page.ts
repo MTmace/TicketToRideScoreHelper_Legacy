@@ -4,6 +4,7 @@ import { PlayerColor } from "../../models/player-color";
 import { CacheService } from "../../services/cache.service";
 import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+import { GameProfile } from "~/app/models/game-profile";
 
 @Component({
     selector: "mt-select-players",
@@ -27,8 +28,13 @@ export class SelectPlayersPage implements AfterViewInit, OnInit {
     }
 
     ngOnInit(): void {
+        var firstProfile: GameProfile;
+        this.dataService.gameProfiles.subscribe(
+            profiles => firstProfile = profiles[0]
+        );
+
         // Set default game to the 1st game profile
-        this.cacheService.gameProfile = this.cacheService.gameProfile || this.dataService.getGameProfiles()[0];
+        this.cacheService.gameProfile = this.cacheService.gameProfile || firstProfile;
     }
 
     selectPlayerColor(selectedPlayerColor: PlayerColor) {
