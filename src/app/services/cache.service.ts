@@ -2,6 +2,10 @@ import { Injectable } from "@angular/core";
 import { PlayerScoreCard } from "../models/player-score-card";
 import { GameProfile} from "../models/game-profile";
 import { PlayerColor } from "../models/player-color";
+import { BehaviorSubject, Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { BonusPointsDefinition } from "../models/bonus-points-definition";
+import { DataService } from "./data.service";
 
 @Injectable({
     providedIn: "root"
@@ -9,9 +13,21 @@ import { PlayerColor } from "../models/player-color";
 
 export class CacheService {
 
-    gameProfile: GameProfile;
+    private _gameProfile$: BehaviorSubject<GameProfile>;
+    public gameProfile$: Observable<GameProfile>;
 
     playerScoreCards: Array<PlayerScoreCard> = [];
+
+    constructor(private dataService: DataService)
+    {
+        // Create the gameProfile subject with first game profile defined in the data service
+        this.dataService.gameProfiles.pipe(
+            map((gameProfiles: Array<GameProfile>) => gameProfiles[0])
+        ).subscribe((gameProfile: GameProfile) => {
+            this._gameProfile$ = new BehaviorSubject(gameProfile);
+            this.gameProfile$ = this._gameProfile$.asObservable();
+        });
+    }
 
     public getRouteCountScore(playerScoreCard: PlayerScoreCard): number {
         if (!playerScoreCard.routeLengthPointsCount) { return 0; }
@@ -40,30 +56,33 @@ export class CacheService {
     }
 
     public createScoreCard(playerColor: PlayerColor): PlayerScoreCard {
-        const bonusPoints = this.gameProfile.bonusPointsDefinitions;
-
         var playerScoreCard = <PlayerScoreCard>({
-          playerColor: playerColor,
-          routeLengthPointsCount: [],
-          bonusPointsCount: []
-        });
+            playerColor: playerColor,
+            routeLengthPointsCount: [],
+            bonusPointsCount: []
+          });
 
-        bonusPoints.forEach(bonusPoint => {
-            playerScoreCard.bonusPointsCount.push({
-                name: bonusPoint.name,
-                points: 0,
-                bonusPointsBehavior: bonusPoint.bonusPointsBehavior,
-                description: bonusPoint.description
-            })
-        });
+        this._gameProfile$.pipe(
+            map((profile: GameProfile) => profile.bonusPointsDefinitions)
+        ).subscribe((bonusPoints: Array<BonusPointsDefinition>) => {
 
-        this.playerScoreCards.push(playerScoreCard);
+            bonusPoints.forEach(bonusPoint => {
+                playerScoreCard.bonusPointsCount.push({
+                    name: bonusPoint.name,
+                    points: 0,
+                    bonusPointsBehavior: bonusPoint.bonusPointsBehavior,
+                    description: bonusPoint.description
+                })
+            });
+
+            this.playerScoreCards.push(playerScoreCard);
+        });
 
         return playerScoreCard;
     }
 
     public changeGame(newGameProfile: GameProfile) {
-        this.gameProfile = newGameProfile;
+        this._gameProfile$.next(newGameProfile);
         this.playerScoreCards = [];
     }
 

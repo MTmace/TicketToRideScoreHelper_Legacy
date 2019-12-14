@@ -2,7 +2,7 @@
 
     <Page.actionBar>
         <ActionBar>
-            <mt-page-action-bar title="Ticket to Ride : {{cacheService.gameProfile.name}}"
+            <mt-page-action-bar title="Ticket to Ride : {{(cacheService.gameProfile$ | async)?.name}}"
                 buttonText="Next"
                 route="/bonus-points"
                 (onNavTapEmitter)="drawer.toggleDrawerState()">
@@ -19,7 +19,7 @@
             <StackLayout>
                 <Label text="Long press (hold down the button) to subtract a route." class="instructions"></Label>
 
-                <GridLayout *ngFor="let routeLengthPoints of cacheService.gameProfile.routeLengthPointsDefinitions; let i = index" rows="auto" columns="*" class="route-length-points">
+                <GridLayout *ngFor="let routeLengthPoints of (cacheService.gameProfile$ | async)?.routeLengthPointsDefinitions; let i = index" rows="auto" columns="*" class="route-length-points">
                     <StackLayout orientation="horizontal">
                         <Label column="0" [text]="routeLengthPoints.length"></Label>
 

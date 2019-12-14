@@ -1,7 +1,7 @@
 <Page>
     <Page.actionBar>
         <ActionBar>
-            <mt-page-action-bar title="Ticket to Ride : {{cacheService.gameProfile.name}}"
+            <mt-page-action-bar title="Ticket to Ride : {{(cacheService.gameProfile$ | async)?.name}}"
                 buttonText="New Game"
                 route=""
                 (onTapEmitter)="newGame()"
@@ -17,14 +17,14 @@
 
         <ScrollView tkMainContent>
             <StackLayout>
-                <Label 
+                <Label
                     *ngFor="let playerScore of scores; let i = index"
-                    [text]="playerScore.value" 
+                    [text]="playerScore.value"
                     [backgroundColor]="playerScore.key.backgroundColor"
                     [color]="playerScore.key.color"
                     [ngClass]="{'not-winner': !playerScore.key.isWinner}">
                 </Label>
             </StackLayout>
         </ScrollView>
-    </RadSideDrawer>    
+    </RadSideDrawer>
 </Page>
