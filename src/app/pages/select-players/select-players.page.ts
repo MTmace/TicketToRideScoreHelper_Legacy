@@ -35,12 +35,15 @@ export class SelectPlayersPage implements AfterViewInit, OnInit {
     }
 
     selectPlayerColor(selectedPlayerColor: PlayerColor) {
-        const foundIndex = this.cacheService.playerScoreCards.findIndex(x => x.playerColor.name === selectedPlayerColor.name);
-        // Create a scorecard if one is not found, remove the card if it does
-        foundIndex === -1 ? this.cacheService.createScoreCard(selectedPlayerColor) : this.cacheService.removeScoreCard(foundIndex);
+
+        this.cacheService.togglePlayerScoreCard(selectedPlayerColor);
+
+        // const foundIndex = this.cacheService.playerScoreCards.findIndex(x => x.playerColor.name === selectedPlayerColor.name);
+        // // Create a scorecard if one is not found, remove the card if it does
+        // foundIndex === -1 ? this.cacheService.createScoreCard(selectedPlayerColor) : this.cacheService.removeScoreCard(foundIndex);
     }
 
-    isEnabled(selectedPlayerColor: string) : boolean {
-        return !this.cacheService.playerScoreCards.some(x => x.playerColor.name === selectedPlayerColor);
-    }
+    // isEnabled(selectedPlayerColor: string) : boolean {
+    //     return !this.cacheService.playerScoreCards.some(x => x.playerColor.name === selectedPlayerColor);
+    // }
 }
