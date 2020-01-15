@@ -5,11 +5,12 @@ import { ExpansionDefinition } from "~/app/models/expansion-definition";
 import { EventData } from "tns-core-modules/ui/page/page";
 import { Button } from "tns-core-modules/ui/button/button";
 import { RouterExtensions } from "nativescript-angular/router";
-import { BehaviorSubject } from "rxjs";
+import { Observable } from "rxjs";
 
 import { DataService } from "~/app/services/data.service";
 import { CacheService } from "~/app/services/cache.service";
 import { GameProfile } from "~/app/models/game-profile";
+import { PlayerScoreCard } from "~/app/models/player-score-card";
 
 @Component({
     selector: "mt-side-drawer",
@@ -21,6 +22,7 @@ import { GameProfile } from "~/app/models/game-profile";
 export class SideDrawerComponent {
 
     selectedGame: GameProfile;
+    playerScoreCards: Array<PlayerScoreCard>;
 
     constructor(public dataService: DataService,
         public cacheService: CacheService,
@@ -29,11 +31,13 @@ export class SideDrawerComponent {
 
             // Subscribe to the game profile defined in the cache service, that is the selected game
             this.cacheService.gameProfile$.subscribe((selectedGame: GameProfile) => this.selectedGame = selectedGame);
+
+            this.cacheService.playerScoreCards$.subscribe(scoreCards => this.playerScoreCards = scoreCards);
     }
 
     selectGame(changedGame: GameProfile) {
 
-        if(this.selectedGame.name != changedGame.name && this.cacheService.playerScoreCards.length > 0) {
+        if (this.selectedGame.name != changedGame.name && this.playerScoreCards.length > 0) {
             this.displayConfirmDialog();
         } else {
             this.changeGame();
@@ -75,7 +79,7 @@ export class SideDrawerComponent {
         if (foundBonusPointsDefinition && myButton.text === '-') {
             // Expansion found and needs to be removed
             this.selectedGame.bonusPointsDefinitions = this.selectedGame.bonusPointsDefinitions.filter(obj => obj !== foundBonusPointsDefinition);
-            this.cacheService.playerScoreCards.forEach(playingCard => {
+            this.playerScoreCards.forEach(playingCard => {
                 playingCard.bonusPointsCount.filter(obj => obj != foundBonusPointsDefinition);
             });
 
@@ -86,7 +90,7 @@ export class SideDrawerComponent {
                 // Need to update the game in the cache
                 this.cacheService.changeGame(this.selectedGame);
 
-                this.cacheService.playerScoreCards.forEach(playingCard => {
+                this.playerScoreCards.forEach(playingCard => {
                     playingCard.bonusPointsCount.push(bpd);
                 });
             });

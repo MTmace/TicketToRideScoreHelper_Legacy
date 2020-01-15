@@ -18,7 +18,7 @@
             <StackLayout>
                 <Label text="Manually calculate completed tickets and other points." class="instructions"></Label>
 
-                <StackLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards; let i = index" class="bonus-points-layout">
+                <StackLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards$ | async; let i = index" class="bonus-points-layout">
 
                     <StackLayout [borderColor]="playerScoreCard.playerColor.backgroundColor">
                         <mt-input-bonus-points *ngFor="let bonusPoints of (cacheService.gameProfile$ | async)?.bonusPointsDefinitions; let i = index"

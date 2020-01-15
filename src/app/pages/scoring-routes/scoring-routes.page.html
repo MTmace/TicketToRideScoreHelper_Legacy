@@ -23,7 +23,7 @@
                     <StackLayout orientation="horizontal">
                         <Label column="0" [text]="routeLengthPoints.length"></Label>
 
-                        <GridLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards; let i = index" rows="70" columns="70">
+                        <GridLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards$ | async; let i = index" rows="70" columns="70">
                             <StackLayout>
                                 <Button class="btn route-length-points-button"
                                     row="0"

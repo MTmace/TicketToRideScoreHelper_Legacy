@@ -16,8 +16,13 @@ import { PlayerScoreCard } from "../../models/player-score-card";
 })
 
 export class SelectPlayersPage implements AfterViewInit, OnInit {
+    playerScoreCards: Array<PlayerScoreCard>;
+
     constructor(public cacheService: CacheService,
         private _changeDetectionRef: ChangeDetectorRef) {
+
+            this.cacheService.playerScoreCards$.subscribe(scoreCards => this.playerScoreCards = scoreCards);
+
     }
 
     @ViewChild(RadSideDrawerComponent, { static: false }) public drawerComponent: RadSideDrawerComponent;
@@ -43,7 +48,7 @@ export class SelectPlayersPage implements AfterViewInit, OnInit {
         // foundIndex === -1 ? this.cacheService.createScoreCard(selectedPlayerColor) : this.cacheService.removeScoreCard(foundIndex);
     }
 
-    // isEnabled(selectedPlayerColor: string) : boolean {
-    //     return !this.cacheService.playerScoreCards.some(x => x.playerColor.name === selectedPlayerColor);
-    // }
+    isColorSelected(selectedPlayerColor: string) : boolean {
+         return !this.playerScoreCards.some(x => x.playerColor.name === selectedPlayerColor);
+    }
 }

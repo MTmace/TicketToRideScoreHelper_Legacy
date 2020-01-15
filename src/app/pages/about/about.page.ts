@@ -36,7 +36,7 @@ export class AboutPage implements AfterViewInit, OnInit {
     }
 
     newGame() {
-        this.cacheService.playerScoreCards = [];
+        this.cacheService.newGame();
         this.router.navigate(["/"]);
     }
 

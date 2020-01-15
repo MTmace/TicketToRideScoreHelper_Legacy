@@ -61,20 +61,24 @@ export class CacheService {
         this._playerScoreCards$.next([]);
     }
 
+    public newGame() {
+        this._playerScoreCards$.next([]);
+    }
+
     public togglePlayerScoreCard(playerColor: PlayerColor) {
         let scoreCards = this._playerScoreCards$.getValue();
 
         let scoreCardIndex: number = this._playerScoreCards$.getValue().findIndex(scoreCard => scoreCard.playerColor.name === playerColor.name);
 
         // If the index is -1 no score card was found so create it.
-        // If the index > 0 then score card was found so remove it.
-        scoreCardIndex > 0 ? scoreCards.find(scoreCard => scoreCard.playerColor.name === playerColor.name) : this.removeScoreCard(scoreCardIndex);
-
-
+        // If the index > -1 then score card was found so remove it.
+        scoreCardIndex > -1 ? this.removeScoreCard(scoreCardIndex) : this.createScoreCard(playerColor);
     }
 
     private removeScoreCard(scoreCardIndex: number): void {
-        this._playerScoreCards$.next(this._playerScoreCards$.getValue().splice(scoreCardIndex, 1))
+        let scoreCards = this._playerScoreCards$.getValue();
+        scoreCards.splice(scoreCardIndex, 1);
+        this._playerScoreCards$.next(scoreCards);
     }
 
     private createScoreCard(playerColor: PlayerColor): PlayerScoreCard {

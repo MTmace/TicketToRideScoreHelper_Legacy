@@ -23,7 +23,7 @@
                 <StackLayout *ngFor="let playerColor of (gameProfile$ | async)?.playerColors; let i = index">
                     <Button [text]="playerColor.name"
                         class="btn"
-                        [ngClass]="notSelected: (cacheService.playerScoreCards$ | async)?.some(x => x.playerColor.name === playerColor.name)"
+                        [class.notSelected]="isColorSelected(playerColor.name)"
                         [color]="playerColor.color"
                         [backgroundColor]="playerColor.backgroundColor"
                         (tap)='selectPlayerColor(playerColor)'
