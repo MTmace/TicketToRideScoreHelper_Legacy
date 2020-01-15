@@ -1,10 +1,10 @@
 <Page>
 
     <Page.actionBar>
-        <mt-page-action-bar title="Ticket to Ride : {{cacheService.gameProfile.name}}"
+        <mt-page-action-bar title="Ticket to Ride : {{ (gameProfile$ | async)?.name }}"
             buttonText="Next"
             route="/scoring-routes"
-            [isEnabled]="cacheService.playerScoreCards.length > 1"
+            [isEnabled]="(cacheService.playerScoreCards$ | async)?.length > 1"
             (onNavTapEmitter)="drawer.toggleDrawerState()">
         </mt-page-action-bar>
     </Page.actionBar>
@@ -20,10 +20,10 @@
                     <Label text="Select colors for the players." class="instructions"></Label>
                 </StackLayout>
 
-                <StackLayout *ngFor="let playerColor of cacheService.gameProfile.playerColors; let i = index">
+                <StackLayout *ngFor="let playerColor of (gameProfile$ | async)?.playerColors; let i = index">
                     <Button [text]="playerColor.name"
                         class="btn"
-                        [ngClass]="{ notSelected: isEnabled(playerColor.name) }"
+                        [class.notSelected]="isColorSelected(playerColor.name)"
                         [color]="playerColor.color"
                         [backgroundColor]="playerColor.backgroundColor"
                         (tap)='selectPlayerColor(playerColor)'

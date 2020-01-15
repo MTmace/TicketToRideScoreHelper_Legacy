@@ -4,6 +4,7 @@ import { PlayerColorVM } from "~/app/models/player-color";
 import { Router } from "@angular/router";
 import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+import { PlayerScoreCard } from "~/app/models/player-score-card";
 
 interface KeyValue<K, V> {
     key: K
@@ -19,10 +20,14 @@ interface KeyValue<K, V> {
 
 export class OutcomePage implements AfterViewInit, OnInit {
     scores: KeyValue<PlayerColorVM, number>[] = [];
+    playerScoreCards: Array<PlayerScoreCard>;
 
     constructor(public cacheService: CacheService,
         private router: Router,
         private _changeDetectionRef: ChangeDetectorRef) {
+
+            this.cacheService.playerScoreCards$.subscribe(scoreCards => this.playerScoreCards = scoreCards);
+
     }
 
     @ViewChild(RadSideDrawerComponent, { static: false }) public drawerComponent: RadSideDrawerComponent;
@@ -34,7 +39,7 @@ export class OutcomePage implements AfterViewInit, OnInit {
     }
 
     ngOnInit(): void {
-        this.cacheService.playerScoreCards.forEach(scoreCard => {
+        this.playerScoreCards.forEach(scoreCard => {
             this.scores.push(<KeyValue<PlayerColorVM, number>> {
                 key: scoreCard.playerColor,
                 value: this.cacheService.getTotalScore(scoreCard)
@@ -47,7 +52,7 @@ export class OutcomePage implements AfterViewInit, OnInit {
     }
 
     newGame() {
-        this.cacheService.playerScoreCards = [];
+        this.cacheService.newGame();
         this.router.navigate(["/"]);
     }
 }

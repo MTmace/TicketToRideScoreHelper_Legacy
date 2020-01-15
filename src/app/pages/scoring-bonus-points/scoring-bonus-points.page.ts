@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild } from "@angular/core";
-import { DataService } from "~/app/services/data.service";
 import { CacheService } from "~/app/services/cache.service";
 import { RadSideDrawerComponent } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
@@ -12,8 +11,7 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 })
 
 export class ScoringBonusPointsPage implements OnInit {
-    constructor(private dataService: DataService,
-        public cacheService: CacheService,
+    constructor(public cacheService: CacheService,
         private _changeDetectionRef: ChangeDetectorRef) {
     }
 

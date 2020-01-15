@@ -1,7 +1,7 @@
 <Page>
     <Page.actionBar>
         <ActionBar>
-            <mt-page-action-bar title="Ticket to Ride : {{cacheService.gameProfile.name}}"
+            <mt-page-action-bar title="Ticket to Ride : {{(cacheService.gameProfile$ | async)?.name}}"
                 buttonText="Next"
                 route="/outcome"
                 (onNavTapEmitter)="drawer.toggleDrawerState()">
@@ -18,10 +18,10 @@
             <StackLayout>
                 <Label text="Manually calculate completed tickets and other points." class="instructions"></Label>
 
-                <StackLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards; let i = index" class="bonus-points-layout">
+                <StackLayout *ngFor="let playerScoreCard of cacheService.playerScoreCards$ | async; let i = index" class="bonus-points-layout">
 
                     <StackLayout [borderColor]="playerScoreCard.playerColor.backgroundColor">
-                        <mt-input-bonus-points *ngFor="let bonusPoints of cacheService.gameProfile.bonusPointsDefinitions; let i = index"
+                        <mt-input-bonus-points *ngFor="let bonusPoints of (cacheService.gameProfile$ | async)?.bonusPointsDefinitions; let i = index"
                             [bonusPoints]="bonusPoints"
                             [playerScoreCard]="playerScoreCard">
                         </mt-input-bonus-points>

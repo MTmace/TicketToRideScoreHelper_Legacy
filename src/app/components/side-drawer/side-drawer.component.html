@@ -4,10 +4,10 @@
     </StackLayout>
     <ScrollView row="1">
         <StackLayout class="sideStackLayout">
-            <StackLayout *ngFor="let gameProfile of dataService.getGameProfiles(); let i = index" [ngClass]="{'selected-game': gameProfile.name === cacheService.gameProfile.name}">
+            <StackLayout *ngFor="let gameProfile of dataService.gameProfiles | async; let i = index" [ngClass]="{'selected-game': gameProfile.name === selectedGame.name}">
                 <Label [text]="gameProfile.name" class="sideLabel" (tap)="selectGame(gameProfile)"></Label>
 
-                <StackLayout *ngIf="gameProfile.name === cacheService.gameProfile.name">
+                <StackLayout *ngIf="gameProfile.name === selectedGame.name">
                     <GridLayout columns="auto, 50" rows="auto" horizontalAlignment="right" *ngFor="let expansionDefinition of gameProfile.expansionDefinitions; let i = index">
                         <Label row="0" col="0" [text]="expansionDefinition.name" style="padding-top: 30px"></Label>
                         <Button row="0" col="1"
